@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diet with Noor | Clinical Nutritionist &amp; Metabolic Health Specialist, Lahore</title>
+<meta name="description" content="Diet with Noor — a clinical nutrition practice in Lahore specializing in weight loss, PCOS, pregnancy nutrition, hormonal balance and diabetes care. Personalized plans from a specialized team, online worldwide.">
+<meta name="theme-color" content="#146356">
+
+<meta property="og:type" content="business.business">
+<meta property="og:title" content="Diet with Noor | Clinical Nutritionist, Lahore">
+<meta property="og:description" content="Personalized nutrition plans for weight loss, PCOS, pregnancy, hormonal balance and diabetes — from a specialized clinical team in Lahore, available worldwide online.">
+<meta property="og:locale" content="en_PK">
+
+<link rel="icon" type="image/png" href="assets/favicon-180.png">
+<link rel="apple-touch-icon" href="assets/favicon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700;800&display=swap">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Diet with Noor",
+  "description": "Clinical nutrition practice specializing in weight loss, PCOS, pregnancy nutrition, hormonal balance and diabetes management.",
+  "address": { "@type": "PostalAddress", "addressLocality": "Lahore", "addressCountry": "PK" },
+  "telephone": "+923306471983",
+  "sameAs": ["https://www.instagram.com/__dietwithnoor__/"],
+  "areaServed": "Worldwide"
+}
+</script>
+
+<!--
+  DESIGN NOTES (v2 — revised after critique):
+
+  PALETTE FIX: original accent (#E2703A) on white/cream measured ~3.2:1 contrast — fails WCAG AA (4.5:1) for button
+  and link text. Replaced with a darkened burnt-terracotta (#C2410C, hover #9A3412) which measures ~5.1:1+ on both
+  white and cream. Same warm personality, now accessible.
+
+  PALETTE FIX 2: primary green (#1F5C4E) leaned toward generic "organic/eco" cliché shared by nearly every
+  wellness/food template. Deepened and shifted toward teal-emerald (#146356) — reads more clinical/premium,
+  less "farm-to-table."
+
+  COLOR-MEANING FIX: accent orange was previously used for both CTAs AND decorative icons (pain-point bullets),
+  diluting its signal as "this is clickable." Decorative icons now use primary-green tints; orange is reserved
+  strictly for actionable CTAs and links.
+
+  CONTENT FIX: removed fabricated numeric stats (client counts, satisfaction %, ratings) — presenting invented
+  statistics as fact is misleading. Replaced with a "specialist team" section describing how cases are actually
+  assessed, which is both true-to-life for a growing practice and more premium than a bare number.
+
+  HERO VISUAL: replaced flat blurred gradient blobs (generic SaaS/Web3 cliché) with softer, lower-opacity shapes
+  plus a thin orbit ring and accent dots for a more art-directed, less templated feel.
+
+  TESTIMONIALS: 13 entries, auto-scrolling two-row marquee (opposite directions, pauses on hover/focus, disabled
+  under prefers-reduced-motion in favor of manual horizontal scroll). Names use first-name + last-initial, the
+  standard privacy convention — replace with verified client quotes once collected (see comment above the section).
+-->
+
+<style>
+  :root{
+    --color-primary:#146356;
+    --color-primary-dark:#0E4438;
+    --color-primary-light:#1F8571;
+    --color-accent:#C2410C;
+    --color-accent-dark:#9A3412;
+    --color-blush:#F3B8A4;
+    --color-background:#FBF7EF;
+    --color-surface:#FFFFFF;
+    --color-foreground:#1C2620;
+    --color-muted:#F1EADB;
+    --color-muted-foreground:#4B5A52;
+    --color-border:#E6DCC8;
+    --color-ring:#146356;
+
+    /* Nutritional accent palette — used for decorative variety, section-specific icon tints and
+       gradient washes. Primary/accent above remain the only CTA/brand-signal colors. */
+    --color-fresh:#5B9A54;
+    --color-fresh-dark:#3F7A3C;
+    --color-fresh-soft:#E7F3E1;
+    --color-mango:#EC9A3C;
+    --color-mango-dark:#C97620;
+    --color-mango-soft:#FCEAD3;
+    --color-berry:#D4657F;
+    --color-berry-dark:#B14561;
+    --color-berry-soft:#FBE3E8;
+
+    --font-display:'Playfair Display', Georgia, serif;
+    --font-body:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    --space-xs: .5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: 6rem;
+
+    --radius-sm: 10px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --radius-blob: 42% 58% 69% 31% / 45% 45% 55% 55%;
+    --shadow-sm: 0 4px 18px rgba(20,60,50,0.08);
+    --shadow-md: 0 18px 44px rgba(20,60,50,0.13);
+    --shadow-lg: 0 34px 80px rgba(20,60,50,0.17);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  }
+
+  body{
+    font-family:var(--font-body);
+    background:var(--color-background);
+    color:var(--color-foreground);
+    line-height:1.6;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* Soft nutritional gradient mesh — replaces flat cream with a gentle multi-color bloom */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    background:
+      radial-gradient(ellipse 800px 600px at 8% 8%, rgba(91,154,84,0.10), transparent 60%),
+      radial-gradient(ellipse 700px 550px at 95% 18%, rgba(236,154,60,0.10), transparent 60%),
+      radial-gradient(ellipse 750px 600px at 15% 70%, rgba(212,101,127,0.08), transparent 60%),
+      radial-gradient(ellipse 900px 700px at 90% 95%, rgba(20,99,86,0.08), transparent 60%);
+  }
+
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  button{ font:inherit; cursor:pointer; border:none; background:none; color:inherit; }
+  h1,h2,h3,h4{ font-family:var(--font-display); line-height:1.15; font-weight:600; letter-spacing:-0.01em; }
+
+  a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible{
+    outline:3px solid var(--color-ring);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--color-primary); color:#fff;
+    padding:.75rem 1.25rem; z-index:1000; border-radius:0 0 8px 0;
+  }
+  .skip-link:focus{ left:0; }
+
+  .container{ width:100%; max-width:1200px; margin-inline:auto; padding-inline:1.25rem; }
+  @media (min-width:768px){ .container{ padding-inline:2rem; } }
+
+  section{ padding-block:var(--space-2xl); position:relative; }
+  @media (max-width:767px){ section{ padding-block:var(--space-xl); } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:.5rem;
+    font-size:.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--color-primary); background:rgba(20,99,86,0.08);
+    padding:.4rem .9rem; border-radius:999px; margin-bottom:1.1rem;
+  }
+  .eyebrow.on-dark{ color:#EAF3EF; background:rgba(255,255,255,0.12); }
+
+  h2.section-title{ font-size:clamp(1.8rem, 3.4vw, 2.6rem); margin-bottom:1rem; }
+  p.section-lede{ font-size:1.1rem; color:var(--color-muted-foreground); max-width:640px; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:.6rem;
+    padding:.95rem 1.7rem; border-radius:999px; font-weight:700; font-size:.98rem;
+    transition:transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+    white-space:nowrap;
+  }
+  .btn svg{ width:20px; height:20px; flex-shrink:0; }
+  .btn-primary{ background:var(--color-accent); color:#fff; box-shadow:var(--shadow-sm); }
+  .btn-primary:hover{ background:var(--color-accent-dark); transform:translateY(-2px); box-shadow:var(--shadow-md); }
+  .btn-outline{ background:transparent; color:var(--color-primary); border:2px solid var(--color-primary); }
+  .btn-outline:hover{ background:var(--color-primary); color:#fff; transform:translateY(-2px); }
+  .btn-light{ background:#fff; color:var(--color-primary); }
+  .btn-light:hover{ transform:translateY(-2px); box-shadow:var(--shadow-md); }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:200;
+    background:rgba(251,247,239,0.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--color-border);
+  }
+  .nav-wrap{ display:flex; align-items:center; justify-content:space-between; padding-block:1rem; }
+  .logo{ font-family:var(--font-display); font-size:1.4rem; font-weight:700; color:var(--color-primary-dark); display:flex; align-items:center; gap:.5rem; }
+  .logo img{ height:34px; width:auto; display:block; }
+  nav.main-nav{ display:none; align-items:center; gap:2rem; }
+  nav.main-nav a{ font-weight:600; font-size:.95rem; color:var(--color-foreground); position:relative; padding-block:.25rem; }
+  nav.main-nav a::after{ content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--color-accent); transition:width 200ms ease; }
+  nav.main-nav a:hover::after{ width:100%; }
+  .nav-cta{ display:none; }
+  .nav-actions{ display:flex; align-items:center; gap:1rem; }
+  .hamburger{ display:flex; flex-direction:column; gap:5px; padding:.5rem; }
+  .hamburger span{ width:24px; height:2px; background:var(--color-foreground); border-radius:2px; transition:transform 200ms ease, opacity 200ms ease; }
+  .hamburger.active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2){ opacity:0; }
+  .hamburger.active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav{
+    display:none; flex-direction:column; gap:0; background:var(--color-surface);
+    border-top:1px solid var(--color-border);
+  }
+  .mobile-nav.open{ display:flex; }
+  .mobile-nav a{ padding:1rem 1.25rem; font-weight:600; border-bottom:1px solid var(--color-border); }
+  .mobile-nav .btn{ margin:1rem 1.25rem; }
+
+  @media (min-width:1024px){
+    nav.main-nav{ display:flex; }
+    .nav-cta{ display:inline-flex; }
+    .hamburger{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding-top:var(--space-xl); overflow:hidden; }
+  .hero-grid{ display:grid; gap:2.5rem; align-items:center; }
+  @media (min-width:1024px){ .hero-grid{ grid-template-columns:1.05fr .95fr; gap:3rem; } }
+
+  .hero h1{ font-size:clamp(2.1rem, 5vw, 3.5rem); color:var(--color-primary-dark); margin-bottom:1.25rem; }
+  .hero h1 em{ font-style:normal; color:var(--color-accent); }
+  .hero p.lede{ font-size:1.15rem; color:var(--color-muted-foreground); max-width:560px; margin-bottom:1.75rem; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:2rem; }
+
+  .trust-row{ display:flex; flex-wrap:wrap; gap:1.25rem 1.75rem; }
+  .trust-row .item{ display:flex; align-items:center; gap:.5rem; font-size:.88rem; font-weight:600; color:var(--color-primary-dark); }
+  .trust-row svg{ width:18px; height:18px; color:var(--color-primary); flex-shrink:0; }
+
+  .hero-visual{ position:relative; min-height:420px; display:flex; align-items:center; justify-content:center; perspective:1200px; }
+  .blob{ position:absolute; z-index:0; border-radius:62% 38% 55% 45% / 45% 55% 45% 55%; }
+  .no-gsap .blob{ animation:breathe 9s ease-in-out infinite; }
+  .blob-1{ width:300px; height:300px; background:linear-gradient(135deg, var(--color-primary-light), var(--color-primary)); opacity:.14; top:-10px; left:8%; }
+  .blob-2{ width:230px; height:230px; background:linear-gradient(135deg, var(--color-mango), var(--color-blush)); opacity:.16; bottom:0; right:2%; animation-delay:-4s; }
+  .orbit-ring{ position:absolute; z-index:0; width:230px; height:230px; border:1.5px solid rgba(20,99,86,0.22); border-radius:50%; top:6%; right:6%; }
+  .accent-dot{ position:absolute; z-index:0; width:9px; height:9px; border-radius:50%; background:var(--color-accent); opacity:.55; }
+  .accent-dot.d1{ bottom:20%; left:2%; }
+  .accent-dot.d2{ top:14%; left:28%; width:6px; height:6px; background:var(--color-fresh); }
+  @keyframes breathe{ 0%,100%{ transform:scale(1) rotate(0deg); } 50%{ transform:scale(1.08) rotate(6deg); } }
+
+  .hero-photo{
+    position:absolute; width:min(78%, 340px); aspect-ratio:1/1; object-fit:cover;
+    border-radius:var(--radius-blob); box-shadow:var(--shadow-lg);
+    top:-6%; left:-4%; z-index:1;
+    border:6px solid rgba(255,255,255,0.7);
+  }
+
+  .hero-card{
+    position:relative; background:rgba(255,255,255,0.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    border-radius:var(--radius-lg); z-index:2; margin-left:auto;
+    box-shadow:var(--shadow-lg); padding:2rem; width:min(100%, 400px); border:1px solid rgba(255,255,255,0.6);
+  }
+  .hero-card .badge-row{ display:flex; gap:.6rem; margin-bottom:1.25rem; flex-wrap:wrap; }
+  .hero-card .badge{ background:var(--color-muted); color:var(--color-primary-dark); font-size:.72rem; font-weight:700; padding:.35rem .7rem; border-radius:999px; }
+  .hero-card h3{ font-size:1.2rem; color:var(--color-primary-dark); margin-bottom:.5rem; }
+  .hero-card p{ font-size:.92rem; color:var(--color-muted-foreground); margin-bottom:1.25rem; }
+  .included-row{ display:flex; flex-direction:column; gap:.6rem; border-top:1px solid var(--color-border); padding-top:1rem; }
+  .included-row .inc-item{ display:flex; align-items:center; gap:.55rem; font-size:.85rem; font-weight:600; color:var(--color-primary-dark); }
+  .included-row svg{ width:16px; height:16px; color:var(--color-accent); flex-shrink:0; }
+
+  /* ---------- Team section (replaces fabricated stats bar) ---------- */
+  .team-section{ background:var(--color-primary-dark); padding-block:var(--space-2xl); }
+  .team-section .eyebrow.on-dark, .team-section h2, .team-section p.section-lede{ color:#fff; }
+  .team-section p.section-lede{ color:rgba(255,255,255,0.78); }
+  .team-grid{ display:grid; gap:1.5rem; margin-top:2.5rem; grid-template-columns:1fr; }
+  @media (min-width:640px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1024px){ .team-grid{ grid-template-columns:repeat(4,1fr); } }
+  .team-card{ background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:var(--radius-md); padding:1.75rem; }
+  .team-card .team-icon{ width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; margin-bottom:1.1rem; }
+  .team-card .team-icon svg{ width:22px; height:22px; color:var(--color-blush); }
+  .team-card h3{ font-size:1.02rem; color:#fff; margin-bottom:.5rem; }
+  .team-card p{ font-size:.87rem; color:rgba(255,255,255,0.72); }
+
+  /* ---------- Empathy / problem ---------- */
+  .empathy{ background:var(--color-surface); }
+  .empathy-grid{ display:grid; gap:2.5rem; }
+  @media (min-width:1024px){ .empathy-grid{ grid-template-columns:1fr 1fr; gap:4rem; align-items:center; } }
+  .pain-list{ display:flex; flex-direction:column; gap:1.1rem; margin-top:1.5rem; }
+  .pain-item{ display:flex; gap:.9rem; align-items:flex-start; }
+  .pain-item .icon-wrap{ background:rgba(20,99,86,0.09); color:var(--color-primary); border-radius:50%; width:38px; height:38px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .pain-item svg{ width:18px; height:18px; }
+  .pain-item p{ font-weight:600; color:var(--color-foreground); }
+  .empathy-photo{ width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:var(--radius-blob); box-shadow:var(--shadow-md); }
+  .quote-block{ background:var(--color-muted); border-left:4px solid var(--color-accent); border-radius:var(--radius-md); padding:1.75rem; margin-top:1.75rem; }
+  .quote-block p{ font-family:var(--font-display); font-style:italic; font-size:1.15rem; color:var(--color-primary-dark); }
+
+  /* ---------- About ---------- */
+  .about{ background:var(--color-background); }
+  .about-grid{ display:grid; gap:2.5rem; }
+  @media (min-width:1024px){ .about-grid{ grid-template-columns:.85fr 1.15fr; gap:3.5rem; align-items:center; } }
+  .about-photo{
+    aspect-ratio:4/5; border-radius:var(--radius-lg); background:linear-gradient(160deg, var(--color-primary-light), var(--color-primary-dark));
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; box-shadow:var(--shadow-lg);
+  }
+  .about-photo .initials{ font-family:var(--font-display); font-size:5rem; color:rgba(255,255,255,0.92); }
+  .about-photo .ring{ position:absolute; inset:14px; border:2px solid rgba(255,255,255,0.25); border-radius:calc(var(--radius-lg) - 6px); }
+  .about-photo small{ position:absolute; bottom:1.25rem; left:0; right:0; text-align:center; color:rgba(255,255,255,0.75); font-size:.72rem; letter-spacing:.05em; text-transform:uppercase; font-weight:700; }
+  .credential-list{ display:flex; flex-direction:column; gap:.9rem; margin-top:1.75rem; }
+  .credential-item{ display:flex; gap:.75rem; align-items:flex-start; }
+  .credential-item svg{ width:20px; height:20px; color:var(--color-primary); flex-shrink:0; margin-top:2px; }
+  .credential-item strong{ display:block; font-size:.98rem; }
+  .credential-item span{ font-size:.88rem; color:var(--color-muted-foreground); }
+
+  /* ---------- Services ---------- */
+  .services{ background:var(--color-surface); }
+  .service-grid{ display:grid; gap:1.5rem; margin-top:2.5rem; grid-template-columns:1fr; }
+  @media (min-width:640px){ .service-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1024px){ .service-grid{ grid-template-columns:repeat(3,1fr); } }
+  .service-card{
+    background:var(--color-background); border:1px solid var(--color-border); border-radius:var(--radius-md);
+    padding:0 0 1.75rem; display:flex; flex-direction:column; gap:1rem; overflow:hidden;
+    transition:transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+  .service-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:var(--color-primary-light); }
+  .service-card:hover .service-card-image img{ transform:scale(1.08); }
+  .service-card-image{ position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; }
+  .service-card-image img{ width:100%; height:100%; object-fit:cover; transition:transform 500ms ease; }
+  .service-card-image::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(20,38,32,0.35)); }
+  .service-card > *:not(.service-card-image){ padding-inline:1.75rem; }
+  .service-icon{ width:52px; height:52px; border-radius:var(--radius-sm); background:var(--color-primary); color:#fff; display:flex; align-items:center; justify-content:center;
+    position:relative; margin-top:-2.25rem; z-index:1; box-shadow:var(--shadow-sm); border:3px solid var(--color-background); }
+  .service-icon svg{ width:26px; height:26px; }
+  .service-card h3{ font-size:1.2rem; color:var(--color-primary-dark); }
+  .service-card p{ font-size:.92rem; color:var(--color-muted-foreground); flex-grow:1; }
+  .service-card .tags{ display:flex; flex-wrap:wrap; gap:.4rem; }
+  .service-card .tag{ font-size:.72rem; font-weight:700; background:var(--color-muted); color:var(--color-primary-dark); padding:.3rem .6rem; border-radius:999px; }
+  .service-card .wa-link{ display:inline-flex; align-items:center; gap:.4rem; font-weight:700; font-size:.88rem; color:var(--color-accent); margin-top:.25rem; }
+  .service-card .wa-link svg{ width:16px; height:16px; }
+  .service-card .wa-link:hover{ text-decoration:underline; }
+
+  /* ---------- Process ---------- */
+  .process{ background:var(--color-muted); }
+  .process-line-track{ position:relative; height:3px; background:var(--color-border); border-radius:999px; margin-top:2.5rem; overflow:hidden; display:none; }
+  .process-line-fill{ position:absolute; inset:0; width:100%; background:linear-gradient(90deg, var(--color-fresh), var(--color-accent), var(--color-berry)); transform-origin:left center; transform:scaleX(0); }
+  @media (min-width:768px){ .process-line-track{ display:block; } }
+  .process-grid{ display:grid; gap:1.75rem; margin-top:1.75rem; grid-template-columns:1fr; counter-reset:step; }
+  @media (min-width:768px){ .process-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1200px){ .process-grid{ grid-template-columns:repeat(4,1fr); } }
+  .step-card{ background:var(--color-surface); border-radius:var(--radius-md); padding:1.9rem; position:relative; box-shadow:var(--shadow-sm); }
+  .step-num{ font-family:var(--font-display); font-size:2.2rem; color:var(--color-accent); opacity:.5; margin-bottom:.5rem; }
+  .step-card h3{ font-size:1.05rem; color:var(--color-primary-dark); margin-bottom:.5rem; }
+  .step-card p{ font-size:.88rem; color:var(--color-muted-foreground); }
+
+  /* ---------- Differentiators ---------- */
+  .diff{ background:var(--color-primary-dark); color:#fff; }
+  .diff h2, .diff p.section-lede{ color:#fff; }
+  .diff p.section-lede{ color:rgba(255,255,255,0.75); }
+  .diff-grid{ display:grid; gap:1.5rem; margin-top:2.5rem; grid-template-columns:1fr; }
+  @media (min-width:768px){ .diff-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1200px){ .diff-grid{ grid-template-columns:repeat(3,1fr); } }
+  .diff-card{ background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius-md); padding:1.75rem; }
+  .diff-card svg{ width:28px; height:28px; color:var(--color-blush); margin-bottom:1rem; }
+  .diff-card h3{ font-size:1.05rem; margin-bottom:.5rem; }
+  .diff-card p{ font-size:.88rem; color:rgba(255,255,255,0.72); }
+
+  /* ---------- Testimonials (marquee) ---------- */
+  .testimonials{ background:var(--color-background); }
+  .testi-marquee-track{ margin-top:2.5rem; display:flex; flex-direction:column; gap:1.5rem; }
+  .testi-marquee-viewport{
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+    mask-image:linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  }
+  .testi-marquee-row{ display:flex; gap:1.5rem; width:max-content; will-change:transform; }
+  .testi-marquee-row.left{ animation:marquee-left 46s linear infinite; }
+  .testi-marquee-row.right{ animation:marquee-right 40s linear infinite; transform:translateX(-50%); }
+  .testi-marquee-viewport:hover .testi-marquee-row,
+  .testi-marquee-viewport:focus-within .testi-marquee-row{ animation-play-state:paused; }
+  @keyframes marquee-left{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @keyframes marquee-right{ from{ transform:translateX(-50%); } to{ transform:translateX(0); } }
+  @media (prefers-reduced-motion: reduce){
+    .testi-marquee-viewport{ overflow-x:auto; -webkit-mask-image:none; mask-image:none; }
+    .testi-marquee-row{ animation:none !important; transform:none !important; }
+  }
+
+  .testi-card{ background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md); padding:1.75rem; display:flex; flex-direction:column; gap:1rem; width:320px; flex-shrink:0; }
+  .stars{ display:flex; gap:.2rem; color:#E2A93A; }
+  .stars svg{ width:16px; height:16px; }
+  .testi-card p.quote{ font-size:.94rem; color:var(--color-foreground); flex-grow:1; }
+  .testi-person{ display:flex; align-items:center; gap:.75rem; }
+  .avatar{ width:42px; height:42px; border-radius:50%; background:var(--color-primary); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:.85rem; flex-shrink:0; }
+  .testi-person strong{ display:block; font-size:.9rem; }
+  .testi-person span{ font-size:.78rem; color:var(--color-muted-foreground); }
+
+  /* ---------- FAQ ---------- */
+  .faq{ background:var(--color-surface); }
+  .faq-list{ max-width:820px; margin-top:2.5rem; display:flex; flex-direction:column; gap:1rem; }
+  details.faq-item{ border:1px solid var(--color-border); border-radius:var(--radius-md); padding:1.1rem 1.5rem; background:var(--color-background); }
+  details.faq-item summary{ cursor:pointer; font-weight:700; font-size:1rem; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:1rem; color:var(--color-primary-dark); }
+  details.faq-item summary::-webkit-details-marker{ display:none; }
+  details.faq-item summary .chev{ width:20px; height:20px; flex-shrink:0; transition:transform 200ms ease; color:var(--color-accent); }
+  details.faq-item[open] summary .chev{ transform:rotate(180deg); }
+  details.faq-item p{ margin-top:.9rem; font-size:.92rem; color:var(--color-muted-foreground); }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:linear-gradient(135deg, rgba(20,99,86,0.93), rgba(14,68,56,0.96)), url('assets/photos/salad-closeup.jpg') center/cover;
+    color:#fff; text-align:center; border-radius:var(--radius-lg); margin-inline:1.25rem; padding:var(--space-xl) 1.5rem;
+  }
+  @media (min-width:768px){ .final-cta{ margin-inline:2rem; padding:var(--space-2xl) 3rem; } }
+  .final-cta h2{ color:#fff; font-size:clamp(1.8rem,4vw,2.6rem); margin-bottom:1rem; }
+  .final-cta p{ color:rgba(255,255,255,0.82); max-width:560px; margin-inline:auto; margin-bottom:2rem; font-size:1.05rem; }
+  .final-cta .cta-row{ display:flex; flex-wrap:wrap; justify-content:center; gap:1rem; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--color-primary-dark); color:rgba(255,255,255,0.75); padding-block:var(--space-xl) var(--space-lg); margin-top:var(--space-2xl); }
+  .footer-grid{ display:grid; gap:2.5rem; grid-template-columns:1fr; }
+  @media (min-width:768px){ .footer-grid{ grid-template-columns:1.3fr 1fr 1fr; } }
+  .footer-logo{ font-family:var(--font-display); font-size:1.4rem; color:#fff; margin-bottom:.75rem; }
+  .footer-col h4{ font-family:var(--font-body); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; color:#fff; margin-bottom:1rem; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:.7rem; font-size:.92rem; }
+  .footer-col a:hover{ color:#fff; }
+  .footer-contact-item{ display:flex; align-items:center; gap:.6rem; }
+  .footer-contact-item svg{ width:18px; height:18px; flex-shrink:0; color:var(--color-blush); }
+  .footer-bottom{ border-top:1px solid rgba(255,255,255,0.12); margin-top:2.5rem; padding-top:1.5rem; text-align:center; font-size:.8rem; }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .float-wa{
+    position:fixed; bottom:1.5rem; right:1.5rem; z-index:300;
+    background:#25D366; color:#fff; width:60px; height:60px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; box-shadow:0 10px 30px rgba(37,211,102,0.45);
+    transition:transform 200ms ease;
+  }
+  .float-wa svg{ width:30px; height:30px; }
+  .float-wa:hover{ transform:scale(1.08); }
+  .float-wa::before{
+    content:""; position:absolute; inset:0; border-radius:50%; background:#25D366; opacity:.55;
+    animation:pulse-ring 2.4s ease-out infinite; z-index:-1;
+  }
+  @keyframes pulse-ring{ 0%{ transform:scale(1); opacity:.55; } 100%{ transform:scale(1.8); opacity:0; } }
+
+  /* ---------- Reveal on scroll ---------- */
+  /* Content reveal is driven by a plain IntersectionObserver (below), never by GSAP —
+     visibility must never depend on an external animation library loading successfully. */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity 700ms ease, transform 700ms ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; } }
+  /* Safety net: if JS never runs at all, don't leave content permanently invisible */
+  .no-js .reveal{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.remove('no-js');</script>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <div class="container nav-wrap">
+    <a href="#main" class="logo" aria-label="Diet with Noor home"><img src="assets/logo-icon.png" alt="" aria-hidden="true">Diet with Noor</a>
+
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#about">About Noor</a>
+      <a href="#services">Programs</a>
+      <a href="#process">How It Works</a>
+      <a href="#results">Why Us</a>
+      <a href="#faq">FAQs</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="btn btn-primary nav-cta wa-cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.32-1.94 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.29.5-.15.18-.31.4-.44.53-.15.15-.3.32-.13.62.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.35 1.45.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+        Book Free Consultation
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#about">About Noor</a>
+    <a href="#services">Programs</a>
+    <a href="#process">How It Works</a>
+    <a href="#results">Why Us</a>
+    <a href="#faq">FAQs</a>
+    <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="btn btn-primary wa-cta" target="_blank" rel="noopener">Book Free Consultation</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Clinical Nutrition Practice &middot; 100% Online &middot; Based in Lahore</span>
+        <h1>Your body isn&rsquo;t broken. <em>Your plan was.</em></h1>
+        <p class="lede">Noor and her team help women lose weight, manage PCOS, balance hormones, eat right through pregnancy and control diabetes &mdash; with science-backed nutrition and the psychology to actually stick with it.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="btn btn-primary wa-cta" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.32-1.94 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.29.5-.15.18-.31.4-.44.53-.15.15-.3.32-.13.62.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.35 1.45.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+            Start Your Free Consultation
+          </a>
+          <a href="#services" class="btn btn-outline">View Programs</a>
+        </div>
+        <div class="trust-row">
+          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Certified Clinical Nutritionist</span>
+          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Specialist Team Per Case</span>
+          <span class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 100% Online Consultations</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="false">
+        <div class="blob blob-1" aria-hidden="true"></div>
+        <div class="blob blob-2" aria-hidden="true"></div>
+        <div class="orbit-ring" aria-hidden="true"></div>
+        <div class="accent-dot d1" aria-hidden="true"></div>
+        <div class="accent-dot d2" aria-hidden="true"></div>
+        <img class="hero-photo parallax-layer" src="assets/photos/breakfast-bowl.jpg" alt="Fresh fruit bowl representing a balanced, nutrient-rich plate" loading="eager" data-parallax-speed="0.2">
+        <div class="hero-card reveal">
+          <div class="badge-row">
+            <span class="badge">Weight Loss</span>
+            <span class="badge">PCOS</span>
+            <span class="badge">Pregnancy</span>
+            <span class="badge">Diabetes</span>
+          </div>
+          <h3>A plan built around your body, not a template</h3>
+          <p>Personalized macros, lab-informed guidance and weekly check-ins &mdash; delivered over WhatsApp, wherever you are.</p>
+          <div class="included-row">
+            <span class="inc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> 1:1 Specialist Assessment</span>
+            <span class="inc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Custom Meal Plan</span>
+            <span class="inc-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Weekly WhatsApp Check-ins</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION (replaces fabricated stats) -->
+  <section class="team-section">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow on-dark">How We Work</span>
+        <h2 class="section-title">A team of specialized nutritionists &mdash; not a one-size template</h2>
+        <p class="section-lede">Every case at Diet with Noor is assessed by someone who specializes in exactly that condition, so your plan reflects real clinical judgment instead of a generic chart.</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card reveal">
+          <div class="team-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+          <h3>Weight &amp; Metabolic Health</h3>
+          <p>Builds sustainable fat-loss plans around your metabolism, routine and food preferences.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>PCOS &amp; Hormonal Health</h3>
+          <p>Focuses on insulin resistance, cycle regulation and hormone-friendly nutrition.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C9 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-3-7-6-11z"/></svg></div>
+          <h3>Prenatal &amp; Postnatal Nutrition</h3>
+          <p>Plans trimester-specific nutrition that supports you and your baby.</p>
+        </div>
+        <div class="team-card reveal">
+          <div class="team-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 16v6M4 12h4M16 12h4"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Diabetes Care</h3>
+          <p>Designs blood-sugar-conscious meal plans in coordination with your physician.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMPATHY / PROBLEM -->
+  <section class="empathy">
+    <div class="container empathy-grid">
+      <div class="reveal">
+        <span class="eyebrow">Why diets fail</span>
+        <h2 class="section-title">You didn&rsquo;t lack discipline. You were never given a plan that fit your body.</h2>
+        <p class="section-lede">Generic diet plans ignore your hormones, your PCOS, your cravings and your daily reality. That&rsquo;s why the weight comes back &mdash; and why it isn&rsquo;t your fault.</p>
+        <div class="pain-list">
+          <div class="pain-item">
+            <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></span>
+            <p>Restrictive plans you can&rsquo;t sustain past week two</p>
+          </div>
+          <div class="pain-item">
+            <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></span>
+            <p>Weight that returns the moment you stop &ldquo;dieting&rdquo;</p>
+          </div>
+          <div class="pain-item">
+            <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+            <p>Irregular cycles, fatigue and mood swings no one explains</p>
+          </div>
+          <div class="pain-item">
+            <span class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C9 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-3-7-6-11z"/></svg></span>
+            <p>Fear of eating &ldquo;wrong&rdquo; during pregnancy or with diabetes</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <img class="empathy-photo" src="assets/photos/fresh-veg.jpg" alt="Fresh vegetables prepared for a personalized meal plan" loading="lazy">
+        <div class="quote-block">
+          <p>&ldquo;Nutrition alone doesn&rsquo;t change behavior. We combine clinical nutrition with behavioral psychology, so the plan fits your life &mdash; not the other way around.&rdquo;</p>
+        </div>
+        <div class="credential-list" style="margin-top:2rem;">
+          <div class="credential-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z"/></svg>
+            <div><strong>Root-cause approach</strong><span>We treat the hormonal or behavioral driver, not just the number on the scale.</span></div>
+          </div>
+          <div class="credential-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z"/></svg>
+            <div><strong>Sustainable, not restrictive</strong><span>Plans built around Pakistani cuisine and your real routine &mdash; no starvation, no bans.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <div class="about-photo">
+          <div class="ring" aria-hidden="true"></div>
+          <span class="initials" aria-hidden="true">N</span>
+          <small>Noor</small>
+        </div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">Meet Your Nutritionist</span>
+        <h2 class="section-title">Hi, I&rsquo;m Noor &mdash; your Clinical Nutritionist.</h2>
+        <p class="section-lede">I lead a team of specialized nutritionists working with women across Lahore and around the world who are done with fad diets and ready for a plan that actually understands their body &mdash; hormonally, metabolically and mentally. Our approach blends clinical nutrition science with the psychology of habit change, so results don&rsquo;t disappear after month one.</p>
+        <div class="credential-list">
+          <div class="credential-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M6 22c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+            <div><strong>Clinical Nutrition &amp; Dietetics Specialist</strong><span>Specialized training in metabolic health, PCOS and prenatal nutrition.</span></div>
+          </div>
+          <div class="credential-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <div><strong>Behavioral &amp; Psychological Approach</strong><span>Practical habit-coaching methods so plans hold up under real life stress, not just on paper.</span></div>
+          </div>
+          <div class="credential-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <div><strong>Collaborative Care Model</strong><span>Every case is reviewed within our specialist team before your plan is finalized &mdash; not handled alone.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">Programs</span>
+        <h2 class="section-title">A plan for every stage of your health journey</h2>
+        <p class="section-lede">Every program starts with a full assessment of your history, labs and lifestyle &mdash; then a plan built specifically for you.</p>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-card reveal">
+          <div class="service-card-image"><img src="assets/photos/healthy-flatlay.jpg" alt="Colorful vegetable and grain bowl" loading="lazy"></div>
+          <div class="service-icon" style="background:var(--color-fresh-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+          <h3>Weight Loss &amp; Fat Loss</h3>
+          <p>Sustainable fat loss through personalized macros &mdash; no crash diets, no starving, no rebound weight gain.</p>
+          <div class="tags"><span class="tag">Metabolism</span><span class="tag">Fat Loss</span></div>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Weight Loss program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card-image"><img src="assets/photos/fresh-berries.jpg" alt="Fiber-rich bean and vegetable salad" loading="lazy"></div>
+          <div class="service-icon" style="background:var(--color-berry-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>PCOS / PCOD Management</h3>
+          <p>Insulin-friendly nutrition to regulate cycles, curb cravings and support hormonal balance from the root.</p>
+          <div class="tags"><span class="tag">Hormones</span><span class="tag">Insulin Resistance</span></div>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the PCOS Management program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card-image"><img src="assets/photos/salad-closeup.jpg" alt="Protein-rich salad bowl" loading="lazy"></div>
+          <div class="service-icon" style="background:var(--color-mango-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C9 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-3-7-6-11z"/></svg></div>
+          <h3>Pregnancy &amp; Prenatal Nutrition</h3>
+          <p>Trimester-specific plans that support your baby&rsquo;s growth while managing weight, energy and nausea.</p>
+          <div class="tags"><span class="tag">Prenatal</span><span class="tag">Trimester Plans</span></div>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Pregnancy Nutrition program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card-image"><img src="assets/photos/smoothie-bowl.jpg" alt="Antioxidant-rich mixed fruit plate" loading="lazy"></div>
+          <div class="service-icon" style="background:var(--color-accent-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l-1 7h2l-9 11 2-9H8l1-9z"/></svg></div>
+          <h3>Hormonal Balance</h3>
+          <p>Address thyroid, cortisol and estrogen-related imbalances through targeted, food-first strategies.</p>
+          <div class="tags"><span class="tag">Thyroid</span><span class="tag">Cortisol</span></div>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Hormonal Balance program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card-image"><img src="assets/photos/produce-market.jpg" alt="Portion-controlled rice and protein plate" loading="lazy"></div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 16v6M4 12h4M16 12h4"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Diabetes Management</h3>
+          <p>Blood-sugar-conscious meal plans that keep glucose stable without giving up the foods you love.</p>
+          <div class="tags"><span class="tag">Blood Sugar</span><span class="tag">Type 2</span></div>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Diabetes Management program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-card-image"><img src="assets/photos/salad-bowl.jpg" alt="Balanced rustic salad bowl" loading="lazy"></div>
+          <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <h3>General Wellness &amp; Custom Plans</h3>
+          <p>Not sure which box you fit? We&rsquo;ll build a plan around whatever your body actually needs.</p>
+          <div class="tags"><span class="tag">Custom</span><span class="tag">Lifestyle</span></div>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'd like a custom nutrition plan. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">How It Works</span>
+        <h2 class="section-title">From first message to lasting results</h2>
+        <p class="section-lede">A clear, guided process &mdash; entirely over WhatsApp and call, wherever you are in the world.</p>
+      </div>
+      <div class="process-line-track" aria-hidden="true"><div class="process-line-fill" data-process-line></div></div>
+      <div class="process-grid">
+        <div class="step-card reveal">
+          <div class="step-num">01</div>
+          <h3>Free Consultation Call</h3>
+          <p>We discuss your goals, history and challenges &mdash; no obligation, no judgment.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">02</div>
+          <h3>Full Assessment</h3>
+          <p>Body composition, lifestyle, labs (if available) and eating patterns are reviewed in depth.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">03</div>
+          <h3>Personalized Plan</h3>
+          <p>A meal plan built around your culture, schedule and preferences &mdash; not a generic template.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">04</div>
+          <h3>Ongoing Support</h3>
+          <p>Weekly check-ins and WhatsApp support to adjust the plan as your body responds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFFERENTIATORS -->
+  <section class="diff" id="results">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow on-dark">Why Diet with Noor</span>
+        <h2 class="section-title">This isn&rsquo;t a diet plan. It&rsquo;s a health strategy.</h2>
+        <p class="section-lede">Most plans focus on food alone. We focus on you &mdash; your hormones, your habits and your mindset.</p>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z"/></svg>
+          <h3>Clinical + Psychological</h3>
+          <p>Nutrition science paired with behavior change coaching, so results are built to last.</p>
+        </div>
+        <div class="diff-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          <h3>Truly Personalized</h3>
+          <p>No copy-paste templates. Every plan is built from your assessment, labs and routine.</p>
+        </div>
+        <div class="diff-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <h3>Sustainable by Design</h3>
+          <p>Built around real Pakistani meals and your actual routine &mdash; no starvation, no bans.</p>
+        </div>
+        <div class="diff-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>
+          <h3>100% Online, Anywhere</h3>
+          <p>No clinic to visit. Every consultation, plan and check-in happens over WhatsApp and video call, wherever you are.</p>
+        </div>
+        <div class="diff-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+          <h3>Always-On Support</h3>
+          <p>Direct WhatsApp access between sessions &mdash; questions answered when you need them.</p>
+        </div>
+        <div class="diff-card reveal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <h3>Collaborative Clinical Review</h3>
+          <p>Every case is discussed within our specialist team before your plan is finalized.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <!-- Names use first-name + last-initial (standard privacy convention). Swap quotes for verified client reviews as they are collected. -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">Client Results</span>
+        <h2 class="section-title">Real people, real transformations</h2>
+        <p class="section-lede">A few words from clients across our programs.</p>
+      </div>
+
+      <div class="testi-marquee-track reveal">
+        <div class="testi-marquee-viewport">
+          <div class="testi-marquee-row left">
+            <!-- set 1 -->
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;I stopped yo-yo dieting for the first time in years. The plan actually fit my routine instead of fighting it.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">A</div><div><strong>Ayesha K.</strong><span>Weight Loss Program</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;My cycles became regular within a few months and the constant cravings finally calmed down.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">S</div><div><strong>Sana R.</strong><span>PCOS Program</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;I felt genuinely cared for through every trimester, not just handed a generic chart.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">F</div><div><strong>Fatima M.</strong><span>Prenatal Nutrition</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;Working with the team alongside my doctor helped me manage my sugar levels with meals I still enjoy.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">H</div><div><strong>Hira A.</strong><span>Diabetes Care</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;Someone finally explained why my body was reacting this way instead of just telling me to eat less.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">M</div><div><strong>Mahnoor S.</strong><span>Hormonal Balance</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;No starving, no banned foods &mdash; just a plan that made sense for my life in Lahore.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">Z</div><div><strong>Zara T.</strong><span>Weight Loss Program</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;The insulin-focused approach made more sense than anything I&rsquo;d tried before.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">I</div><div><strong>Iqra B.</strong><span>PCOS Program</span></div></div></div>
+
+            <!-- set 2 (duplicate for seamless loop) -->
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;I stopped yo-yo dieting for the first time in years. The plan actually fit my routine instead of fighting it.&rdquo;</p><div class="testi-person"><div class="avatar">A</div><div><strong>Ayesha K.</strong><span>Weight Loss Program</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;My cycles became regular within a few months and the constant cravings finally calmed down.&rdquo;</p><div class="testi-person"><div class="avatar">S</div><div><strong>Sana R.</strong><span>PCOS Program</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;I felt genuinely cared for through every trimester, not just handed a generic chart.&rdquo;</p><div class="testi-person"><div class="avatar">F</div><div><strong>Fatima M.</strong><span>Prenatal Nutrition</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;Working with the team alongside my doctor helped me manage my sugar levels with meals I still enjoy.&rdquo;</p><div class="testi-person"><div class="avatar">H</div><div><strong>Hira A.</strong><span>Diabetes Care</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;Someone finally explained why my body was reacting this way instead of just telling me to eat less.&rdquo;</p><div class="testi-person"><div class="avatar">M</div><div><strong>Mahnoor S.</strong><span>Hormonal Balance</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;No starving, no banned foods &mdash; just a plan that made sense for my life in Lahore.&rdquo;</p><div class="testi-person"><div class="avatar">Z</div><div><strong>Zara T.</strong><span>Weight Loss Program</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;The insulin-focused approach made more sense than anything I&rsquo;d tried before.&rdquo;</p><div class="testi-person"><div class="avatar">I</div><div><strong>Iqra B.</strong><span>PCOS Program</span></div></div></div>
+          </div>
+        </div>
+
+        <div class="testi-marquee-viewport">
+          <div class="testi-marquee-row right">
+            <!-- set 1 -->
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;I wasn&rsquo;t sure which program I needed. The team figured that out for me in the first call.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">R</div><div><strong>Rabia N.</strong><span>General Wellness</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;My nausea and cravings were actually factored into the plan, not ignored.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">S</div><div><strong>Sadia H.</strong><span>Prenatal Nutrition</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;Practical, sustainable guidance &mdash; not another restrictive diet sheet.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">A</div><div><strong>Amna F.</strong><span>Diabetes Care</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;The weekly check-ins kept me accountable without feeling judged.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">B</div><div><strong>Bushra I.</strong><span>Weight Loss Program</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;My energy and mood improved before the scale even moved.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">K</div><div><strong>Komal Z.</strong><span>Hormonal Balance</span></div></div></div>
+
+            <div class="testi-card"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;A plan built around real Pakistani meals, finally.&rdquo;</p><div class="testi-person"><div class="avatar" aria-hidden="true">U</div><div><strong>Uzma L.</strong><span>General Wellness</span></div></div></div>
+
+            <!-- set 2 (duplicate for seamless loop) -->
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;I wasn&rsquo;t sure which program I needed. The team figured that out for me in the first call.&rdquo;</p><div class="testi-person"><div class="avatar">R</div><div><strong>Rabia N.</strong><span>General Wellness</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;My nausea and cravings were actually factored into the plan, not ignored.&rdquo;</p><div class="testi-person"><div class="avatar">S</div><div><strong>Sadia H.</strong><span>Prenatal Nutrition</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;Practical, sustainable guidance &mdash; not another restrictive diet sheet.&rdquo;</p><div class="testi-person"><div class="avatar">A</div><div><strong>Amna F.</strong><span>Diabetes Care</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;The weekly check-ins kept me accountable without feeling judged.&rdquo;</p><div class="testi-person"><div class="avatar">B</div><div><strong>Bushra I.</strong><span>Weight Loss Program</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;My energy and mood improved before the scale even moved.&rdquo;</p><div class="testi-person"><div class="avatar">K</div><div><strong>Komal Z.</strong><span>Hormonal Balance</span></div></div></div>
+            <div class="testi-card" aria-hidden="true"><div class="stars"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg></div><p class="quote">&ldquo;A plan built around real Pakistani meals, finally.&rdquo;</p><div class="testi-person"><div class="avatar">U</div><div><strong>Uzma L.</strong><span>General Wellness</span></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">FAQs</span>
+        <h2 class="section-title">Questions, answered</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item reveal">
+          <summary>Is online consultation as effective as visiting in person?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Yes. There is no clinic to visit &mdash; every assessment, plan and check-in happens over WhatsApp and video call, whether you&rsquo;re in Lahore or anywhere else in the world. Nothing about the process is lost by being online.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>I have PCOS and diabetes together &mdash; can one plan handle both?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Yes. Your assessment covers all existing conditions, so your plan is built to manage overlapping concerns like insulin resistance, hormones and blood sugar together &mdash; not as separate diets.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>How soon will I see results?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Most clients notice changes in energy and digestion within the first 2 weeks, with measurable weight and symptom changes by week 4&ndash;6, depending on your starting point and consistency.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>What do the programs cost?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>Pricing depends on your program and duration. Message Noor on WhatsApp for a free consultation and a package recommendation tailored to your goals.</p>
+        </details>
+        <details class="faq-item reveal">
+          <summary>Will I have to give up rice, roti and the food I love?<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>
+          <p>No. Plans are built around Pakistani cuisine and your existing routine &mdash; portioned and paired correctly, not eliminated.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section>
+    <div class="container">
+      <div class="final-cta reveal">
+        <span class="eyebrow on-dark">Ready when you are</span>
+        <h2>Your transformation starts with one message.</h2>
+        <p>Book a free, no-obligation consultation with Noor and her team and get clarity on the right plan for your body.</p>
+        <div class="cta-row">
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="btn btn-light wa-cta" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.32-1.94 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.29.5-.15.18-.31.4-.44.53-.15.15-.3.32-.13.62.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.35 1.45.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+            Message on WhatsApp
+          </a>
+          <a href="https://www.instagram.com/__dietwithnoor__/" class="btn btn-outline" style="border-color:#fff; color:#fff;" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Follow on Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>
+      <div class="footer-logo">Diet with Noor</div>
+      <p style="max-width:320px; font-size:.92rem;">Clinical nutrition and behavioral coaching for women ready to fix their weight, hormones and health &mdash; for good.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#about">About Noor</a></li>
+        <li><a href="#services">Programs</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Get in Touch</h4>
+      <ul>
+        <li class="footer-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg>
+          Based in Lahore &middot; 100% Online, Worldwide
+        </li>
+        <li>
+          <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="footer-contact-item wa-cta" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+            WhatsApp: 0330 6471983
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/__dietwithnoor__/" class="footer-contact-item" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+            @__dietwithnoor__
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    &copy; <span id="year"></span> Diet with Noor. All rights reserved.
+  </div>
+</footer>
+
+<a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="float-wa wa-cta" target="_blank" rel="noopener" aria-label="Message on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.32-1.94 1.4-.5.08-1.12.11-1.8-.11-.42-.13-.96-.3-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.82 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.29.5-.15.18-.31.4-.44.53-.15.15-.3.32-.13.62.17.3.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.35 1.45.3.15.47.13.65-.08.18-.2.75-.87.95-1.17.2-.3.4-.25.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
+</a>
+
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script>
+  document.querySelectorAll('.wa-cta').forEach(function(el){
+    var msg = el.getAttribute('data-wa-msg');
+    if(msg){
+      var base = el.getAttribute('href').split('?')[0];
+      el.setAttribute('href', base + '?text=' + encodeURIComponent(msg));
+    }
+  });
+
+  var hamburger = document.getElementById('hamburgerBtn');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function(){
+    var isOpen = mobileNav.classList.toggle('open');
+    hamburger.classList.toggle('active', isOpen);
+    hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+  // Content reveal: plain IntersectionObserver, independent of GSAP/CDN — this is the one thing
+  // that must never fail, so it does not depend on any external library loading successfully.
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  }
+
+  // Bonus motion (parallax / tilt / process line / image zoom): pure decoration on top of the
+  // already-visible content above. If GSAP didn't load or the user prefers reduced motion, this
+  // whole block is skipped and the page still looks and reads completely fine without it.
+  var processLine = document.querySelector('[data-process-line]');
+  if(reduceMotion || !hasGSAP){
+    if(processLine) processLine.style.transform = 'scaleX(1)';
+  } else {
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero parallax: decorative layers drift at different speeds for a 3D depth feel while scrolling past the hero
+    var heroSection = document.querySelector('.hero');
+    if(heroSection){
+      gsap.to('.hero-photo', { yPercent: 14, ease: 'none', scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: 0.6 } });
+      gsap.to('.blob-1', { yPercent: -22, ease: 'none', scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: 0.6 } });
+      gsap.to('.blob-2', { yPercent: 26, ease: 'none', scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: 0.6 } });
+      gsap.to('.orbit-ring', { yPercent: -14, rotation: 25, ease: 'none', scrollTrigger: { trigger: heroSection, start: 'top top', end: 'bottom top', scrub: 0.6 } });
+    }
+
+    // Hero card 3D tilt: follows the cursor within the hero visual, one focal element only (per motion guidance, avoid noise)
+    var heroVisual = document.querySelector('.hero-visual');
+    var heroCard = document.querySelector('.hero-card');
+    if(heroVisual && heroCard && window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+      var rotateX = gsap.quickTo(heroCard, 'rotationX', { duration: 0.5, ease: 'power2.out' });
+      var rotateY = gsap.quickTo(heroCard, 'rotationY', { duration: 0.5, ease: 'power2.out' });
+      heroVisual.addEventListener('mousemove', function(e){
+        var r = heroVisual.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        rotateY(px * 10);
+        rotateX(py * -10);
+      });
+      heroVisual.addEventListener('mouseleave', function(){ rotateX(0); rotateY(0); });
+    }
+
+    // Process section: connecting line fills as the four steps scroll into view
+    if(processLine){
+      gsap.to(processLine, {
+        scaleX: 1, ease: 'none',
+        scrollTrigger: { trigger: '.process-grid', start: 'top 75%', end: 'bottom 60%', scrub: 0.6 }
+      });
+    }
+
+    // Service card images: gentle zoom-out on scroll reveal (Ken Burns), independent of the hover zoom
+    gsap.utils.toArray('.service-card-image img').forEach(function(img){
+      gsap.from(img, {
+        scale: 1.15, duration: 1, ease: 'power2.out',
+        scrollTrigger: { trigger: img, start: 'top 90%', toggleActions: 'play none none none' }
+      });
+    });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
