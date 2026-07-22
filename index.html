@@ -236,7 +236,8 @@
   .trust-row .item{ display:flex; align-items:center; gap:.5rem; font-size:.88rem; font-weight:600; color:var(--color-primary-dark); }
   .trust-row svg{ width:18px; height:18px; color:var(--color-primary); flex-shrink:0; }
 
-  .hero-visual{ position:relative; min-height:420px; display:flex; align-items:center; justify-content:center; perspective:1200px; }
+  .hero-visual{ position:relative; display:flex; flex-direction:column; align-items:center; gap:1.5rem; perspective:1200px; }
+  @media (min-width:1024px){ .hero-visual{ min-height:420px; flex-direction:row; justify-content:center; gap:0; } }
   .blob{ position:absolute; z-index:0; border-radius:62% 38% 55% 45% / 45% 55% 45% 55%; }
   .no-gsap .blob{ animation:breathe 9s ease-in-out infinite; }
   .blob-1{ width:300px; height:300px; background:linear-gradient(135deg, var(--color-primary-light), var(--color-primary)); opacity:.14; top:-10px; left:8%; }
@@ -248,17 +249,20 @@
   @keyframes breathe{ 0%,100%{ transform:scale(1) rotate(0deg); } 50%{ transform:scale(1.08) rotate(6deg); } }
 
   .hero-photo{
-    position:absolute; width:min(78%, 340px); aspect-ratio:1/1; object-fit:cover;
-    border-radius:var(--radius-blob); box-shadow:var(--shadow-lg);
-    top:-6%; left:-4%; z-index:1;
+    position:static; width:min(70%, 300px); aspect-ratio:1/1; object-fit:cover;
+    border-radius:var(--radius-blob); box-shadow:var(--shadow-lg); z-index:1;
     border:6px solid rgba(255,255,255,0.7);
+  }
+  @media (min-width:1024px){
+    .hero-photo{ position:absolute; width:min(78%, 340px); top:-6%; left:-4%; }
   }
 
   .hero-card{
     position:relative; background:rgba(255,255,255,0.72); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
-    border-radius:var(--radius-lg); z-index:2; margin-left:auto;
+    border-radius:var(--radius-lg); z-index:2;
     box-shadow:var(--shadow-lg); padding:2rem; width:min(100%, 400px); border:1px solid rgba(255,255,255,0.6);
   }
+  @media (min-width:1024px){ .hero-card{ margin-left:auto; } }
   .hero-card .badge-row{ display:flex; gap:.6rem; margin-bottom:1.25rem; flex-wrap:wrap; }
   .hero-card .badge{ background:var(--color-muted); color:var(--color-primary-dark); font-size:.78rem; font-weight:700; padding:.35rem .7rem; border-radius:999px; }
   .hero-card h3{ font-size:1.2rem; color:var(--color-primary-dark); margin-bottom:.5rem; }
@@ -675,7 +679,7 @@
         </div>
 
         <div class="service-card reveal">
-          <div class="service-card-image"><img src="assets/photos/salad-closeup.jpg" alt="Protein-rich salad bowl" loading="lazy"></div>
+          <div class="service-card-image"><img src="assets/photos/salad-closeup-card.jpg" alt="Protein-rich salad bowl" loading="lazy"></div>
           <div class="service-icon" style="background:var(--color-mango-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C9 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-3-7-6-11z"/></svg></div>
           <h3>Pregnancy &amp; Prenatal Nutrition</h3>
           <p>Trimester-specific plans that support your baby&rsquo;s growth while managing weight, energy and nausea.</p>
