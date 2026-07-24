@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 30 40% 98%;
+  --foreground: 150 15% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 150 15% 15%;
+  --primary: 152 45% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 35 60% 92%;
+  --secondary-foreground: 150 15% 15%;
+  --muted: 150 10% 95%;
+  --muted-foreground: 150 8% 45%;
+  --accent: 25 85% 60%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 150 10% 88%;
+  --input: 150 10% 88%;
+  --ring: 152 45% 40%;
+  --radius: 1rem;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.tap-target {
+  min-height: 44px;
+  min-width: 44px;
+}
