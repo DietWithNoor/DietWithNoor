@@ -68,14 +68,15 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("onboarding_completed")
-    .eq("user_id", data.user.id)
-    .maybeSingle();
+  const [{ data: appUser }, { data: profile }] = await Promise.all([
+    supabase.from("users").select("role").eq("id", data.user.id).maybeSingle(),
+    supabase.from("profiles").select("onboarding_completed").eq("user_id", data.user.id).maybeSingle(),
+  ]);
 
-  const onboarded = profile?.onboarding_completed === true;
-  const destination = next ?? (onboarded ? "/app/dashboard" : "/app/auth/confirmed");
+  // Admins never go through the client onboarding wizard.
+  const isAdmin = appUser?.role === "admin";
+  const onboarded = isAdmin || profile?.onboarding_completed === true;
+  const destination = next ?? (isAdmin ? "/app/admin" : onboarded ? "/app/dashboard" : "/app/auth/confirmed");
 
   // Re-target the redirect while preserving the auth cookies already staged on
   // `response` — copying them over rather than building a fresh response.

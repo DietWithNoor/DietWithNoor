@@ -11,7 +11,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { Skeleton } from "@/components/ui/skeleton";
 import { PageHeader } from "@/components/common/PageHeader";
-import { TrendChart } from "@/components/dashboard/TrendChart";
+import { TrendChart } from "@/components/dashboard/TrendChartLazy";
 import { AddWeightForm } from "@/components/progress/AddWeightForm";
 import { WeightHistoryTable } from "@/components/progress/WeightHistoryTable";
 import { StickyAction } from "@/components/common/StickyAction";

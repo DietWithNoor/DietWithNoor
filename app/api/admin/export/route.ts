@@ -58,7 +58,8 @@ export async function POST(req: NextRequest) {
 
   const admin = createAdminClient();
 
-  let usersQuery = admin.from("users").select("*").order("user_number");
+  // "Everyone" means every client, not staff — admins are excluded even here.
+  let usersQuery = admin.from("users").select("*").eq("role", "user").order("user_number");
   if (userIds !== "all") usersQuery = usersQuery.in("id", userIds);
   const { data: users, error } = await usersQuery;
 

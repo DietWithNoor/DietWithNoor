@@ -30,7 +30,8 @@ export default function AdminExportPage() {
     setError(null);
     try {
       const supabase = createClient();
-      const { data, error: err } = await supabase.from("users").select("*").order("full_name");
+      // Admins aren't clients — "Selected clients" only ever lists real clients.
+      const { data, error: err } = await supabase.from("users").select("*").eq("role", "user").order("full_name");
       if (err) throw err;
       setUsers(data ?? []);
       setState("ready");

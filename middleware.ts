@@ -61,12 +61,16 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  const [{ data: appUser }, { data: profile }] = await Promise.all([
-    supabase.from("users").select("role").eq("id", user.id).maybeSingle(),
-    supabase.from("profiles").select("onboarding_completed").eq("user_id", user.id).maybeSingle(),
-  ]);
+  // One request instead of two — this runs on every protected navigation,
+  // so a redundant round trip here is felt on every single page load.
+  const { data: appUser } = await supabase
+    .from("users")
+    .select("role, profiles(onboarding_completed)")
+    .eq("id", user.id)
+    .maybeSingle();
 
   const isAdmin = appUser?.role === "admin";
+  const profile = Array.isArray(appUser?.profiles) ? appUser?.profiles[0] : appUser?.profiles;
   // A missing profile row counts as "not onboarded" — the wizard upserts it.
   const onboarded = profile?.onboarding_completed === true;
 
@@ -79,6 +83,18 @@ export async function middleware(request: NextRequest) {
     }
     // Admins go straight into the console. Gating the admin panel behind the
     // client onboarding wizard would lock a coach out of their own dashboard.
+    return response;
+  }
+
+  // Admins never go through the client onboarding wizard at all — an admin
+  // hitting /app/dashboard directly must not be bounced into it.
+  if (isAdmin) {
+    if (isOnboardingRoute) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/app/admin";
+      url.search = "";
+      return NextResponse.redirect(url);
+    }
     return response;
   }
 

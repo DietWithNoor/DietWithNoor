@@ -60,14 +60,18 @@ function LoginForm() {
 
       // Send the user where they actually belong instead of always /dashboard —
       // an unonboarded user would otherwise just be bounced by middleware.
+      // Admins skip the client onboarding wizard entirely.
       const supabase = createClient();
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("onboarding_completed")
-        .eq("user_id", result.user.id)
-        .maybeSingle();
+      const [{ data: appUser }, { data: profile }] = await Promise.all([
+        supabase.from("users").select("role").eq("id", result.user.id).maybeSingle(),
+        supabase.from("profiles").select("onboarding_completed").eq("user_id", result.user.id).maybeSingle(),
+      ]);
 
-      router.push(profile?.onboarding_completed ? "/app/dashboard" : "/app/onboarding");
+      if (appUser?.role === "admin") {
+        router.push("/app/admin");
+      } else {
+        router.push(profile?.onboarding_completed ? "/app/dashboard" : "/app/onboarding");
+      }
       router.refresh();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to sign in");

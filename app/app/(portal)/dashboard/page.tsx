@@ -8,7 +8,7 @@ import { useAppUser } from "@/lib/auth-context";
 import { getWeightLogs, getWellnessRange, getMealsForDate, sumMealMacros } from "@/lib/db";
 import { computeWellnessScore, todayISO, toLocalISODate, addDays, formatNumber } from "@/lib/utils";
 import { WeightCard } from "@/components/dashboard/WeightCard";
-import { TrendChart } from "@/components/dashboard/TrendChart";
+import { TrendChart } from "@/components/dashboard/TrendChartLazy";
 import { WellnessScore } from "@/components/dashboard/WellnessScore";
 import { StreakBadge } from "@/components/dashboard/StreakBadge";
 import { MotivationalCard } from "@/components/common/MotivationalCard";

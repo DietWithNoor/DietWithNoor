@@ -33,7 +33,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table";
-import { TrendChart } from "@/components/dashboard/TrendChart";
+import { TrendChart } from "@/components/dashboard/TrendChartLazy";
 import type {
   AppUser,
   Profile,

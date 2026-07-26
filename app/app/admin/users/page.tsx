@@ -39,7 +39,8 @@ export default function AdminUsersPage() {
     try {
       const supabase = createClient();
       const [usersRes, logsRes] = await Promise.all([
-        supabase.from("users").select("*").order("created_at", { ascending: false }),
+        // Admins aren't clients — the directory only ever lists actual clients.
+        supabase.from("users").select("*").eq("role", "user").order("created_at", { ascending: false }),
         supabase.from("weight_logs").select("user_id, logged_at").order("logged_at", { ascending: false }),
       ]);
       if (usersRes.error) throw usersRes.error;

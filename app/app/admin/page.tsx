@@ -37,8 +37,13 @@ export default function AdminOverviewPage() {
 
       const [totalUsersRes, newRegRes, weightCountRes, activityRes, activeTodayRes, activeWeekRes] =
         await Promise.all([
-          supabase.from("users").select("*", { count: "exact", head: true }),
-          supabase.from("users").select("*", { count: "exact", head: true }).gte("created_at", monthAgo),
+          // Admins aren't clients — exclude them from every client-facing count.
+          supabase.from("users").select("*", { count: "exact", head: true }).eq("role", "user"),
+          supabase
+            .from("users")
+            .select("*", { count: "exact", head: true })
+            .eq("role", "user")
+            .gte("created_at", monthAgo),
           supabase.from("weight_logs").select("*", { count: "exact", head: true }),
           supabase
             .from("activity_logs")
