@@ -201,6 +201,15 @@
   nav.main-nav a{ font-weight:600; font-size:.95rem; color:var(--color-foreground); position:relative; padding-block:.25rem; }
   nav.main-nav a::after{ content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--color-accent); transition:width 200ms ease; }
   nav.main-nav a:hover::after{ width:100%; }
+  /* Portal link reads as an account action, not another page section. */
+  nav.main-nav a.nav-portal{
+    border:1.5px solid var(--color-border); border-radius:999px;
+    padding:.45rem 1rem; margin-left:.35rem; color:var(--color-primary);
+    transition:border-color 200ms ease, background-color 200ms ease;
+  }
+  nav.main-nav a.nav-portal:hover{ border-color:var(--color-primary); background:rgba(0,0,0,.03); }
+  nav.main-nav a.nav-portal::after{ display:none; }
+  .mobile-nav a.nav-portal{ color:var(--color-primary); }
   .nav-cta{ display:none; }
   .nav-actions{ display:flex; align-items:center; gap:1rem; }
   .hamburger{ display:flex; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:44px; height:44px; padding:0; }
@@ -490,6 +499,7 @@
       <a href="#process">How It Works</a>
       <a href="#results">Why Us</a>
       <a href="#faq">FAQs</a>
+      <a href="/app" class="nav-portal">Client Portal</a>
     </nav>
 
     <div class="nav-actions">
@@ -509,6 +519,7 @@
     <a href="#process">How It Works</a>
     <a href="#results">Why Us</a>
     <a href="#faq">FAQs</a>
+    <a href="/app" class="nav-portal">Client Portal</a>
     <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I want to book a free consultation to start my personalized nutrition plan." class="btn btn-primary wa-cta" target="_blank" rel="noopener">Book Free Consultation</a>
   </div>
 </header>

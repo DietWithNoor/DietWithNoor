@@ -63,6 +63,16 @@ export function clientIdLabel(userNumber: number) {
   return `#${userNumber}`;
 }
 
+/** Up to two initials for avatar chips; falls back to "?" for empty names. */
+export function initialsOf(fullName: string | null | undefined) {
+  const parts = (fullName ?? "").trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  return parts
+    .slice(0, 2)
+    .map((p) => p[0]!.toUpperCase())
+    .join("");
+}
+
 /* ---------------- Height helpers (canonical unit is cm) ---------------- */
 
 export function cmToFtIn(cm: number) {
