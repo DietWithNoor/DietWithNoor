@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChevronDown, LogOut, Shield, User as UserIcon, Home, Leaf, Loader2 } from "lucide-react";
+import { ChevronDown, LogOut, Shield, User as UserIcon, Home, Leaf, Loader2, ArrowLeft } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -48,22 +48,37 @@ export function PortalHeader({
     <header className="sticky top-0 z-40 border-b border-border/70 bg-card/85 backdrop-blur-xl">
       <div className={cn("mx-auto px-4", variant === "admin" ? "max-w-6xl sm:px-6" : "max-w-md")}>
         <div className="flex h-16 items-center justify-between gap-3">
-          {/* Brand */}
-          <Link href={variant === "admin" ? "/app/admin" : "/app/dashboard"} className="flex min-w-0 items-center gap-2.5">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-              <Leaf className="h-[18px] w-[18px]" strokeWidth={2} />
-            </span>
-            <span className="min-w-0">
-              <span className="block truncate font-display text-base font-semibold leading-tight tracking-tight">
-                Diet With Noor
+          <div className="flex min-w-0 items-center gap-1">
+            {/* Leftmost: back to the public marketing site. */}
+            <a
+              href="/"
+              aria-label="Back to site"
+              title="Back to site"
+              className="-ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+            >
+              <ArrowLeft className="h-[18px] w-[18px]" strokeWidth={2} />
+            </a>
+
+            {/* Brand */}
+            <Link
+              href={variant === "admin" ? "/app/admin" : "/app/dashboard"}
+              className="flex min-w-0 items-center gap-2.5 pl-1"
+            >
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground">
+                <Leaf className="h-[18px] w-[18px]" strokeWidth={2} />
               </span>
-              {variant === "admin" && (
-                <span className="block text-2xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">
-                  Admin console
+              <span className="min-w-0">
+                <span className="block truncate font-display text-base font-semibold leading-tight tracking-tight">
+                  Diet With Noor
                 </span>
-              )}
-            </span>
-          </Link>
+                {variant === "admin" && (
+                  <span className="block text-2xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+                    Admin console
+                  </span>
+                )}
+              </span>
+            </Link>
+          </div>
 
           {/* Account menu */}
           {status === "ready" && user ? (
