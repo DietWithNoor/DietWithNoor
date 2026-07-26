@@ -8,7 +8,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
     <input
       type={type}
       className={cn(
-        "flex h-11 w-full rounded-xl border border-input bg-background px-4 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+        // 16px base font on mobile stops iOS Safari from zooming the viewport on focus.
+        "flex h-12 w-full rounded-md border border-input bg-card px-4 py-2 text-base shadow-xs transition-all duration-200 placeholder:text-muted-foreground/70 focus-visible:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm",
         className
       )}
       ref={ref}
@@ -18,4 +19,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(({ className, type,
 });
 Input.displayName = "Input";
 
-export { Input };
+const Textarea = React.forwardRef<HTMLTextAreaElement, React.TextareaHTMLAttributes<HTMLTextAreaElement>>(
+  ({ className, ...props }, ref) => (
+    <textarea
+      className={cn(
+        "flex min-h-[80px] w-full rounded-md border border-input bg-card px-4 py-3 text-base shadow-xs transition-all duration-200 placeholder:text-muted-foreground/70 focus-visible:border-primary/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/25 disabled:cursor-not-allowed disabled:opacity-50 sm:text-sm",
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+);
+Textarea.displayName = "Textarea";
+
+export { Input, Textarea };

@@ -2,37 +2,105 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Design tokens mirror the marketing site (index.html) so the portal and the
+ * public site read as one brand: warm cream ground, deep teal-green primary,
+ * mango / fresh / berry as the supporting data-viz ramp.
+ * Visual language: "Soft UI Evolution" — soft warm-tinted shadows, generous
+ * radii, restrained color, WCAG AA+ contrast.
+ */
 :root {
-  --background: 30 40% 98%;
-  --foreground: 150 15% 15%;
+  --background: 40 60% 96%; /* #FBF7EF cream */
+  --foreground: 144 15% 13%; /* #1C2620 */
+
   --card: 0 0% 100%;
-  --card-foreground: 150 15% 15%;
-  --primary: 152 45% 40%;
+  --card-foreground: 144 15% 13%;
+
+  --primary: 170 66% 23%; /* #146356 */
+  --primary-light: 168 62% 32%; /* #1F8571 */
+  --primary-dark: 167 66% 16%; /* #0E4438 */
   --primary-foreground: 0 0% 100%;
-  --secondary: 35 60% 92%;
-  --secondary-foreground: 150 15% 15%;
-  --muted: 150 10% 95%;
-  --muted-foreground: 150 8% 45%;
-  --accent: 25 85% 60%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 72% 51%;
+
+  --secondary: 41 44% 90%; /* #F1EADB */
+  --secondary-foreground: 167 66% 16%;
+
+  --muted: 41 44% 93%;
+  --muted-foreground: 148 9% 32%; /* #4B5A52 — 6.8:1 on cream */
+
+  --accent: 32 82% 58%; /* #EC9A3C mango */
+  --accent-foreground: 144 15% 13%;
+  --accent-soft: 33 82% 91%; /* #FCEAD3 */
+
+  --fresh: 114 29% 47%; /* #5B9A54 */
+  --fresh-soft: 96 45% 92%; /* #E7F3E1 */
+  --berry: 346 56% 61%; /* #D4657F */
+  --berry-soft: 344 71% 94%; /* #FBE3E8 */
+
+  --destructive: 0 72% 46%;
   --destructive-foreground: 0 0% 100%;
-  --border: 150 10% 88%;
-  --input: 150 10% 88%;
-  --ring: 152 45% 40%;
-  --radius: 1rem;
+
+  --border: 40 37% 84%; /* #E6DCC8 */
+  --input: 40 37% 84%;
+  --ring: 168 62% 32%;
+
+  --radius: 1.25rem;
+
+  /* Warm-tinted elevation — never neutral black */
+  --shadow-xs: 0 1px 2px hsl(167 40% 16% / 0.05);
+  --shadow-sm: 0 1px 3px hsl(167 40% 16% / 0.06), 0 1px 2px hsl(167 40% 16% / 0.04);
+  --shadow-md: 0 4px 12px hsl(167 40% 16% / 0.07), 0 2px 4px hsl(167 40% 16% / 0.04);
+  --shadow-lg: 0 12px 32px hsl(167 40% 16% / 0.1), 0 4px 8px hsl(167 40% 16% / 0.05);
+  --shadow-xl: 0 24px 56px hsl(167 40% 16% / 0.14), 0 8px 16px hsl(167 40% 16% / 0.06);
 }
 
 * {
   border-color: hsl(var(--border));
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: contain;
 }
 
+/* Everything tappable gets the fast-tap treatment and a pointer affordance */
+button,
+a,
+[role="button"],
+label,
+summary {
+  touch-action: manipulation;
+}
+
+button:not(:disabled),
+a,
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+/* Display face for page titles and the big hero numbers */
+.font-display {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
+/* Tabular figures so changing metrics don't jitter */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
@@ -40,4 +108,65 @@ body {
 .tap-target {
   min-height: 44px;
   min-width: 44px;
+}
+
+/* Skeleton shimmer — matches the final layout rather than a spinner */
+@keyframes dwn-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton {
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 0%,
+    hsl(41 44% 97%) 40%,
+    hsl(var(--muted)) 80%
+  );
+  background-size: 200% 100%;
+  animation: dwn-shimmer 1.6s ease-in-out infinite;
+  border-radius: 0.75rem;
+}
+
+/* Gentle attention pulse for freshly-saved values */
+@keyframes dwn-pop {
+  0% {
+    transform: scale(0.94);
+    opacity: 0.6;
+  }
+  60% {
+    transform: scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pop {
+  animation: dwn-pop 320ms cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+input[type="date"],
+input[type="datetime-local"],
+input[type="time"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
