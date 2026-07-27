@@ -123,7 +123,6 @@ export default function AdminUsersPage() {
           {(Object.keys(RANGE_LABELS) as RangeFilter[]).map((r) => (
             <Button
               key={r}
-              size="sm"
               variant={range === r ? "default" : "outline"}
               onClick={() => setRange(r)}
               className="shrink-0"

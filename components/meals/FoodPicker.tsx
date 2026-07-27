@@ -122,7 +122,7 @@ export function FoodPicker({
                 title="No matches"
                 description={`We don't have "${query}" in the food list yet — add it as a custom item instead.`}
                 action={
-                  <Button size="sm" variant="outline" onClick={() => setMode("custom")}>
+                  <Button variant="outline" onClick={() => setMode("custom")}>
                     <PencilLine className="h-4 w-4" />
                     Add custom item
                   </Button>

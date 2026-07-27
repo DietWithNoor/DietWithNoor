@@ -38,7 +38,7 @@ export function ErrorState({
         {message || "We couldn't load this right now. Check your connection and try again."}
       </p>
       {onRetry && (
-        <Button variant="outline" size="sm" className="mt-4" onClick={onRetry}>
+        <Button variant="outline" className="mt-4" onClick={onRetry}>
           <RefreshCw className="h-4 w-4" />
           Try again
         </Button>

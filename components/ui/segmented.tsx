@@ -37,8 +37,10 @@ export function Segmented<T extends string>({
       role="radiogroup"
       aria-label={ariaLabel}
       className={cn(
-        "relative flex w-full items-stretch gap-1 rounded-md bg-muted p-1",
-        size === "sm" ? "h-10" : "h-12",
+        // Both sizes share the same 48px container so the actual tap target
+        // (container minus padding) clears 40px — only the label text and
+        // horizontal density differ between "default" and "sm".
+        "relative flex w-full items-stretch gap-1 rounded-md bg-muted p-1 h-12",
         className
       )}
     >

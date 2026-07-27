@@ -97,7 +97,7 @@ export default function DashboardPage() {
   }
 
   const logWeightTrigger = (
-    <Button size="sm">
+    <Button>
       <Plus className="h-4 w-4" />
       Log weight
     </Button>
@@ -183,7 +183,7 @@ function TodayNutritionCard({ macros, mealCount }: { macros: MacroTotals | null;
               Track what you eat to see calories and macros here.
             </p>
           </div>
-          <Button asChild size="sm" variant="outline" className="shrink-0">
+          <Button asChild variant="outline" className="shrink-0">
             <Link href="/app/meals">Add</Link>
           </Button>
         </CardContent>

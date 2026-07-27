@@ -54,7 +54,7 @@ export function PortalHeader({
               href="/"
               aria-label="Back to site"
               title="Back to site"
-              className="-ml-1.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="-ml-2.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               <ArrowLeft className="h-[18px] w-[18px]" strokeWidth={2} />
             </a>
@@ -85,7 +85,7 @@ export function PortalHeader({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className="flex shrink-0 items-center gap-1.5 rounded-full py-1 pl-1 pr-2 transition-colors hover:bg-muted"
+                  className="flex h-11 shrink-0 items-center gap-1.5 rounded-full pl-1 pr-2 transition-colors hover:bg-muted"
                   aria-label="Account menu"
                 >
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-xs font-bold text-primary">

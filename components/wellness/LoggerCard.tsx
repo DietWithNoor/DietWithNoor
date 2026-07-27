@@ -92,7 +92,7 @@ export function LoggerCard({
           </div>
 
           {!open && (
-            <Button size="sm" variant="outline" className="shrink-0" onClick={onExpand}>
+            <Button variant="outline" className="shrink-0" onClick={onExpand}>
               {emptyCta}
             </Button>
           )}
