@@ -1,23 +1,35 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import type { EmailOtpType } from "@supabase/supabase-js";
 
 export const dynamic = "force-dynamic";
 
 /**
- * GET /app/auth/callback?code=...
+ * GET /app/auth/callback?token_hash=...&type=signup   (preferred)
+ * GET /app/auth/callback?code=...                      (legacy / fallback)
  *
- * Supabase's email confirmation / magic link lands here. We exchange the code
- * for a session (which sets the auth cookies via the response), then route the
- * user onward:
- *   - onboarding not finished -> /app/auth/confirmed (shows "Email verified",
- *     whose CTA continues to /app/onboarding)
- *   - otherwise               -> /app/dashboard
+ * Supabase's email confirmation / magic link lands here. There are two ways
+ * Supabase can issue that link:
+ *
+ *  - PKCE (`code=`): requires the code_verifier cookie set by the SAME
+ *    browser that started signup. Breaks whenever the link is opened
+ *    somewhere else — an in-app browser (Gmail, Outlook), a different
+ *    device, etc. This is what a real client hit.
+ *  - OTP (`token_hash=` + `type=`): verified directly against Supabase with
+ *    no local state required, so it works from any browser or device. This
+ *    is what the Supabase email template must use (see PORTAL_SETUP.md) —
+ *    this route already handles it correctly once the template is updated.
+ *
+ * `code` is kept as a fallback only so an email already sent under the old
+ * template still works; new emails should all use token_hash.
  *
  * Cookies must be written onto the SAME response object we return, otherwise
  * the session is dropped and the user bounces back to /app/login.
  */
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl;
+  const tokenHash = searchParams.get("token_hash");
+  const otpType = searchParams.get("type") as EmailOtpType | null;
   const code = searchParams.get("code");
   const next = searchParams.get("next");
   const errorDescription = searchParams.get("error_description");
@@ -28,7 +40,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  if (!code) {
+  if (!tokenHash && !code) {
     return NextResponse.redirect(
       `${origin}/app/login?error=${encodeURIComponent("That confirmation link is missing or malformed.")}`
     );
@@ -58,13 +70,13 @@ export async function GET(request: NextRequest) {
     }
   );
 
-  const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+  const { data, error } = tokenHash
+    ? await supabase.auth.verifyOtp({ token_hash: tokenHash, type: otpType ?? "signup" })
+    : await supabase.auth.exchangeCodeForSession(code!);
 
   if (error || !data.user) {
-    // PKCE's verifier is stored as a cookie in the browser that started the
-    // signup — opening the email link in a different browser or app (very
-    // common: an in-app browser like Gmail's) means that cookie isn't there.
-    // The raw SDK message is technical; give the user something actionable.
+    // Only the PKCE (`code`) path can fail this specific way — token_hash
+    // verification has no browser-locked state to mismatch.
     const isPkceMismatch = /pkce|code verifier/i.test(error?.message ?? "");
     const friendlyMessage = isPkceMismatch
       ? "This confirmation link needs to be opened in the same browser you signed up in. If you tapped it from an email app, try “Open in Browser” or copy the link into Safari/Chrome — or request a new email below."
