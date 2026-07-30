@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { InlineError } from "@/components/ui/error-state";
 import { AuthShell } from "@/components/auth/AuthShell";
-import { signIn } from "@/lib/auth";
+import { signIn, resendConfirmation } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
@@ -44,12 +44,28 @@ function LoginForm() {
   const [remember, setRemember] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [resendState, setResendState] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   // The auth callback route forwards failures here as ?error=
+  const [needsConfirmation, setNeedsConfirmation] = useState(false);
   useEffect(() => {
     const paramError = searchParams.get("error");
-    if (paramError) setError(paramError);
+    if (paramError) {
+      setError(paramError);
+      setNeedsConfirmation(/browser you signed up|confirmation link/i.test(paramError));
+    }
   }, [searchParams]);
+
+  async function handleResend() {
+    if (!email) return;
+    setResendState("sending");
+    try {
+      await resendConfirmation(email);
+      setResendState("sent");
+    } catch {
+      setResendState("error");
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -88,6 +104,25 @@ function LoginForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && <InlineError message={error} />}
+
+        {needsConfirmation && (
+          <div className="-mt-1 flex items-center gap-2 text-sm">
+            <span className="text-muted-foreground">Enter your email above, then</span>
+            <button
+              type="button"
+              onClick={handleResend}
+              disabled={!email || resendState === "sending" || resendState === "sent"}
+              className="font-semibold text-primary underline-offset-4 hover:underline disabled:no-underline disabled:opacity-60"
+            >
+              {resendState === "sending"
+                ? "Sending..."
+                : resendState === "sent"
+                ? "Email sent — check your inbox"
+                : "resend the confirmation email"}
+            </button>
+          </div>
+        )}
+        {resendState === "error" && <InlineError message="Couldn't resend that email — try again in a moment." />}
 
         <div className="space-y-1.5">
           <Label htmlFor="email">Email</Label>

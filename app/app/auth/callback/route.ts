@@ -61,11 +61,16 @@ export async function GET(request: NextRequest) {
   const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
   if (error || !data.user) {
-    return NextResponse.redirect(
-      `${origin}/app/login?error=${encodeURIComponent(
-        error?.message ?? "That confirmation link has expired. Request a new one."
-      )}`
-    );
+    // PKCE's verifier is stored as a cookie in the browser that started the
+    // signup — opening the email link in a different browser or app (very
+    // common: an in-app browser like Gmail's) means that cookie isn't there.
+    // The raw SDK message is technical; give the user something actionable.
+    const isPkceMismatch = /pkce|code verifier/i.test(error?.message ?? "");
+    const friendlyMessage = isPkceMismatch
+      ? "This confirmation link needs to be opened in the same browser you signed up in. If you tapped it from an email app, try “Open in Browser” or copy the link into Safari/Chrome — or request a new email below."
+      : (error?.message ?? "That confirmation link has expired. Request a new one.");
+
+    return NextResponse.redirect(`${origin}/app/login?error=${encodeURIComponent(friendlyMessage)}`);
   }
 
   const [{ data: appUser }, { data: profile }] = await Promise.all([
