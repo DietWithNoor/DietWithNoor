@@ -411,7 +411,11 @@
   .video-bg-sticky canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
   .video-bg-scrim{
     position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(14,68,56,.55) 0%, rgba(14,68,56,.4) 40%, rgba(14,68,56,.7) 100%);
+    /* Raised again after testing against the brightest frames (light cutting-board shots) —
+       a translucent overlay alone can't guarantee contrast against arbitrary video content,
+       so the floor has to assume the brightest frame, not an average one. Was .55/.4/.7,
+       then .68/.58/.8 — still not enough on the lightest frames. */
+    background:linear-gradient(180deg, rgba(6,32,26,.82) 0%, rgba(6,32,26,.76) 40%, rgba(6,32,26,.88) 100%);
   }
   .video-bg-content{ position:relative; z-index:1; background:transparent !important; }
   /* Only the first merged section needs to be pulled up over the sticky video —
@@ -427,8 +431,24 @@
   .video-bg-content .credential-item span{ color:#fff; }
   .video-bg-content p.section-lede{ color:rgba(255,255,255,0.8); }
   .video-bg-content .credential-item span{ color:rgba(255,255,255,0.7); }
-  .video-bg-content .pain-item .icon-wrap{ background:rgba(255,255,255,0.14); color:#fff; }
+  .video-bg-content .pain-item .icon-wrap{ background:rgba(255,255,255,0.2); color:#fff; }
   .video-bg-content .credential-item svg{ color:#fff; }
+  /* Text sitting directly on the scrim (no card behind it) gets a shadow as a
+     contrast floor that doesn't depend on the scrim alone. */
+  .video-bg-content h2.section-title,
+  .video-bg-content p.section-lede,
+  .video-bg-content .eyebrow,
+  .video-bg-content .pain-item p,
+  .video-bg-content .credential-item strong,
+  .video-bg-content .credential-item span{ text-shadow:0 1px 2px rgba(0,0,0,0.65), 0 2px 14px rgba(0,0,0,0.55); }
+  /* Team cards were designed for a solid dark background; on the video they need
+     real opacity + blur, not a 6% tint, or the text on top is unreadable
+     whenever a bright frame plays behind them. */
+  .video-bg-content .team-card{
+    background:rgba(9,43,36,0.62);
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+    border-color:rgba(255,255,255,0.22);
+  }
   .video-bg-loading{
     position:absolute; inset:0; background:#0E4438; z-index:5;
     display:flex; align-items:center; justify-content:center; color:#fff;
