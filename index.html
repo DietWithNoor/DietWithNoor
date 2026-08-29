@@ -1251,22 +1251,34 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    for(var i = 0; i < FRAME_COUNT; i++){
-      (function(idx){
-        var img = new Image();
-        img.onload = img.onerror = function(){
-          loadedCount++;
-          loadPct.textContent = Math.round((loadedCount / FRAME_COUNT) * 100) + '%';
-          if(idx === 0) drawFrame(0, true);
-          if(loadedCount === FRAME_COUNT){
-            loading.classList.add('hidden');
-            onScroll();
-          }
-        };
-        img.src = FRAME_PATH(idx + 1);
-        images[idx] = img;
-      })(i);
+    function loadFrame(idx){
+      var img = new Image();
+      img.onload = img.onerror = function(){
+        loadedCount++;
+        loadPct.textContent = Math.round((loadedCount / FRAME_COUNT) * 100) + '%';
+        if(idx === 0) drawFrame(0, true);
+      };
+      img.src = FRAME_PATH(idx + 1);
+      images[idx] = img;
     }
+
+    // Reveal the moment the very first frame is ready instead of waiting on all
+    // 222 — that was the "loading late" complaint. Requesting frame 0 alone
+    // first (rather than firing all 222 requests at once) means it isn't
+    // competing with the rest for the browser's connection pool, so it lands
+    // fast. The remaining frames keep loading in the background afterward;
+    // drawFrame() already falls back to whatever was last drawn if the exact
+    // target for the current scroll position isn't in yet.
+    var first = new Image();
+    first.onload = first.onerror = function(){
+      loadedCount = 1;
+      images[0] = first;
+      drawFrame(0, true);
+      loading.classList.add('hidden');
+      onScroll();
+      for(var i = 1; i < FRAME_COUNT; i++) loadFrame(i);
+    };
+    first.src = FRAME_PATH(1);
   })();
 
   // Bonus motion (parallax / tilt / process line / image zoom): pure decoration on top of the
