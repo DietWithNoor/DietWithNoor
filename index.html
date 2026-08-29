@@ -394,6 +394,43 @@
   .outcome-card p{ font-size:.85rem; color:var(--color-muted-foreground); line-height:1.5; }
   .outcomes-note{ text-align:center; font-size:.82rem; color:var(--color-muted-foreground); margin-top:2rem; }
 
+  /* ---------- Scroll-scrubbed video background ---------- */
+  /* Video is a pinned, edge-to-edge background layer. Real content (the Team
+     section) is pulled up on top of it with a negative margin and scrolls
+     over it completely normally — no fake captions, no artificial height.
+     The wrapper's height is exactly the sticky viewport plus however tall
+     that real content naturally is; once it scrolls past, the sticky layer
+     unpins and the next section continues with its own normal background. */
+  .video-bg-wrap{ position:relative; background:#0E4438; }
+  .video-bg-sticky{ position:sticky; top:0; height:100vh; width:100%; overflow:hidden; z-index:0; }
+  .video-bg-sticky video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .video-bg-scrim{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(14,68,56,.55) 0%, rgba(14,68,56,.4) 40%, rgba(14,68,56,.7) 100%);
+  }
+  .video-bg-content{ position:relative; z-index:1; background:transparent !important; }
+  /* Only the first merged section needs to be pulled up over the sticky video —
+     later merged sections follow it in normal flow and stay above the video too. */
+  .video-bg-content:first-of-type{ margin-top:-100vh; }
+  /* Empathy section's default styling assumes a light background; override for
+     legibility over the dark video + scrim now behind it. */
+  .video-bg-content h2.section-title,
+  .video-bg-content p.section-lede,
+  .video-bg-content .eyebrow,
+  .video-bg-content .pain-item p,
+  .video-bg-content .credential-item strong,
+  .video-bg-content .credential-item span{ color:#fff; }
+  .video-bg-content p.section-lede{ color:rgba(255,255,255,0.8); }
+  .video-bg-content .credential-item span{ color:rgba(255,255,255,0.7); }
+  .video-bg-content .pain-item .icon-wrap{ background:rgba(255,255,255,0.14); color:#fff; }
+  .video-bg-content .credential-item svg{ color:#fff; }
+  .video-bg-loading{
+    position:absolute; inset:0; background:#0E4438; z-index:5;
+    display:flex; align-items:center; justify-content:center; color:#fff;
+    font-size:.95rem; letter-spacing:.04em; transition:opacity 300ms ease;
+  }
+  .video-bg-loading.hidden{ opacity:0; pointer-events:none; }
+
   /* ---------- Worldwide flag marquee ---------- */
   .world-section{ background:var(--color-surface); }
   .flag-marquee-track{ margin-top:2.5rem; display:flex; flex-direction:column; gap:1.25rem; }
@@ -592,8 +629,21 @@
     </div>
   </section>
 
+  <!-- SCROLL-SCRUBBED VIDEO BACKGROUND -->
+  <!-- Real <video>, re-encoded with a keyframe on every frame (assets/scroll-video-seek.mp4)
+       so setting currentTime on every scroll tick seeks instantly. Edge-to-edge, pinned behind
+       the actual Team section content, which scrolls over it completely normally — no fake
+       captions, no stretched section height. Once the Team section has scrolled past, the
+       video unpins and the next section (Empathy) continues with its own normal background. -->
+  <section class="video-bg-wrap" id="videoBgWrap">
+    <div class="video-bg-sticky">
+      <div class="video-bg-loading" id="videoBgLoading">Loading&hellip;</div>
+      <video id="scrollVideo" src="assets/scroll-video-seek.mp4" muted playsinline preload="auto"></video>
+      <div class="video-bg-scrim" aria-hidden="true"></div>
+    </div>
+
   <!-- TEAM SECTION (replaces fabricated stats) -->
-  <section class="team-section">
+  <section class="team-section video-bg-content">
     <div class="container">
       <div class="reveal">
         <span class="eyebrow on-dark">How We Work</span>
@@ -626,7 +676,7 @@
   </section>
 
   <!-- EMPATHY / PROBLEM -->
-  <section class="empathy">
+  <section class="empathy video-bg-content">
     <div class="container empathy-grid">
       <div class="reveal">
         <span class="eyebrow">Why diets fail</span>
@@ -672,7 +722,7 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="about" id="about">
+  <section class="about video-bg-content" id="about">
     <div class="container about-grid">
       <div class="reveal">
         <div class="about-photo">
@@ -701,6 +751,7 @@
         </div>
       </div>
     </div>
+  </section>
   </section>
 
   <!-- SERVICES -->
@@ -1139,6 +1190,51 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   }
+
+  // Scroll-scrubbed video background: a real <video>, re-encoded with a keyframe on every
+  // frame (see assets/scroll-video-seek.mp4) so seeking on every scroll tick is instant
+  // instead of decoding forward from a distant keyframe. The wrapper's own natural height
+  // (100vh sticky + however tall the Team section content is) defines the scroll range the
+  // video's duration is mapped across. Independent of GSAP.
+  (function(){
+    var wrap = document.getElementById('videoBgWrap');
+    if(!wrap) return;
+    var video = document.getElementById('scrollVideo');
+    var loading = document.getElementById('videoBgLoading');
+
+    function onScroll(){
+      if(!video.duration) return;
+      var rect = wrap.getBoundingClientRect();
+      var total = rect.height - window.innerHeight;
+      var progress = Math.min(1, Math.max(0, -rect.top / total));
+      video.currentTime = progress * video.duration;
+    }
+
+    // Priming: a <video> that has never played often paints nothing at all —
+    // not even the frame at currentTime 0 — until play() has actually run once.
+    // Muted autoplay is allowed by every browser, so play() then immediately
+    // pause() forces the first real decode without the video visibly running.
+    function primeAndReveal(){
+      var playPromise = video.play();
+      if(playPromise && playPromise.then){
+        playPromise.then(function(){ video.pause(); loading.classList.add('hidden'); onScroll(); })
+          .catch(function(){ loading.classList.add('hidden'); onScroll(); });
+      } else {
+        video.pause();
+        loading.classList.add('hidden');
+        onScroll();
+      }
+    }
+
+    if(reduceMotion){
+      // Show the first frame only, no scroll-linked seeking.
+      video.addEventListener('loadeddata', primeAndReveal, { once: true });
+      return;
+    }
+
+    video.addEventListener('loadedmetadata', primeAndReveal, { once: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
 
   // Bonus motion (parallax / tilt / process line / image zoom): pure decoration on top of the
   // already-visible content above. If GSAP didn't load or the user prefers reduced motion, this
