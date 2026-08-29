@@ -383,8 +383,13 @@
   @media (min-width:1200px){ .outcomes-grid{ grid-template-columns:repeat(5,1fr); } }
   .outcome-card{
     background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
-    padding:1.75rem; box-shadow:var(--shadow-sm); text-align:center;
+    padding:1.5rem 1.75rem 1.75rem; box-shadow:var(--shadow-sm); text-align:center; overflow:hidden;
   }
+  .outcome-image{
+    width:100%; aspect-ratio:4/3; border-radius:var(--radius-sm); overflow:hidden;
+    margin:0 auto 1.1rem; background:var(--color-muted, #f5f5f5);
+  }
+  .outcome-image img{ width:100%; height:100%; object-fit:cover; display:block; }
   .outcome-icon{
     width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
     margin:0 auto 1.1rem;
@@ -915,37 +920,27 @@
       </div>
       <div class="outcomes-grid">
         <div class="outcome-card reveal">
-          <div class="outcome-icon" style="background:rgba(91,154,84,0.12)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#5B9A54" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
+          <div class="outcome-image"><img src="assets/outcomes/weight-loss.png" alt="Illustration representing a weight and fat loss journey" loading="lazy" width="400" height="300" /></div>
           <h3>Weight &amp; Fat Loss</h3>
           <p>Steadier energy and fewer cravings first, with weight change that's built to hold &mdash; not a crash diet that rebounds.</p>
         </div>
         <div class="outcome-card reveal">
-          <div class="outcome-icon" style="background:rgba(212,101,127,0.12)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#D4657F" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-          </div>
+          <div class="outcome-image"><img src="assets/outcomes/pcos.png" alt="Illustration representing PCOS/PCOD symptoms" loading="lazy" width="400" height="300" /></div>
           <h3>PCOS / PCOD</h3>
           <p>Nutrition aimed at insulin resistance and hormonal balance &mdash; the root drivers behind cycle irregularity and stubborn weight.</p>
         </div>
         <div class="outcome-card reveal">
-          <div class="outcome-icon" style="background:rgba(236,154,60,0.12)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#EC9A3C" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
-          </div>
+          <div class="outcome-image"><img src="assets/outcomes/diabetes.png" alt="Illustration representing diabetes care and monitoring" loading="lazy" width="400" height="300" /></div>
           <h3>Diabetes Care</h3>
           <p>Meals structured around your own blood sugar patterns, built alongside your doctor &mdash; not a generic low-carb sheet.</p>
         </div>
         <div class="outcome-card reveal">
-          <div class="outcome-icon" style="background:rgba(243,184,164,0.25)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/></svg>
-          </div>
+          <div class="outcome-image"><img src="assets/outcomes/pregnancy.png" alt="Illustration representing the pregnancy and prenatal journey" loading="lazy" width="400" height="300" /></div>
           <h3>Pregnancy &amp; Prenatal</h3>
           <p>Nutrition that adapts trimester to trimester &mdash; nausea, cravings and energy all factored in, not overridden.</p>
         </div>
         <div class="outcome-card reveal">
-          <div class="outcome-icon" style="background:rgba(20,99,86,0.1)">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#146356" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
+          <div class="outcome-image"><img src="assets/outcomes/hormonal-balance.png" alt="Illustration representing hormonal balance" loading="lazy" width="400" height="300" /></div>
           <h3>Hormonal Balance</h3>
           <p>Energy, mood and sleep addressed at the hormonal root, alongside whatever brought you here in the first place.</p>
         </div>
