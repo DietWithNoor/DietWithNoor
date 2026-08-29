@@ -358,7 +358,7 @@
   @media (min-width:768px){ .process-line-track{ display:block; } }
   .process-grid{ display:grid; gap:1.75rem; margin-top:1.75rem; grid-template-columns:1fr; counter-reset:step; }
   @media (min-width:768px){ .process-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (min-width:1200px){ .process-grid{ grid-template-columns:repeat(4,1fr); } }
+  @media (min-width:1200px){ .process-grid{ grid-template-columns:repeat(5,1fr); } }
   .step-card{ background:var(--color-surface); border-radius:var(--radius-md); padding:1.9rem; position:relative; box-shadow:var(--shadow-sm); }
   .step-num{ font-family:var(--font-display); font-size:2.2rem; color:var(--color-accent); opacity:.5; margin-bottom:.5rem; }
   .step-card h3{ font-size:1.05rem; color:var(--color-primary-dark); margin-bottom:.5rem; }
@@ -375,6 +375,24 @@
   .diff-card svg{ width:28px; height:28px; color:var(--color-blush); margin-bottom:1rem; }
   .diff-card h3{ font-size:1.05rem; margin-bottom:.5rem; }
   .diff-card p{ font-size:.88rem; color:rgba(255,255,255,0.72); }
+
+  /* ---------- Outcomes by program ---------- */
+  .outcomes{ background:var(--color-background); }
+  .outcomes-grid{ display:grid; gap:1.5rem; margin-top:2.5rem; grid-template-columns:1fr; }
+  @media (min-width:640px){ .outcomes-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1200px){ .outcomes-grid{ grid-template-columns:repeat(5,1fr); } }
+  .outcome-card{
+    background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
+    padding:1.75rem; box-shadow:var(--shadow-sm); text-align:center;
+  }
+  .outcome-icon{
+    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    margin:0 auto 1.1rem;
+  }
+  .outcome-icon svg{ width:26px; height:26px; }
+  .outcome-card h3{ font-size:1rem; color:var(--color-primary-dark); margin-bottom:.5rem; }
+  .outcome-card p{ font-size:.85rem; color:var(--color-muted-foreground); line-height:1.5; }
+  .outcomes-note{ text-align:center; font-size:.82rem; color:var(--color-muted-foreground); margin-top:2rem; }
 
   /* ---------- Worldwide flag marquee ---------- */
   .world-section{ background:var(--color-surface); }
@@ -774,11 +792,16 @@
         </div>
         <div class="step-card reveal">
           <div class="step-num">03</div>
+          <h3>Choose Your Plan</h3>
+          <p>See your options and pick the plan that fits your goals and your budget &mdash; no pressure, no one-size-fits-all pricing.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">04</div>
           <h3>Personalized Plan</h3>
           <p>A meal plan built around your culture, schedule and preferences &mdash; not a generic template.</p>
         </div>
         <div class="step-card reveal">
-          <div class="step-num">04</div>
+          <div class="step-num">05</div>
           <h3>Ongoing Support</h3>
           <p>Weekly check-ins and WhatsApp support to adjust the plan as your body responds.</p>
         </div>
@@ -826,6 +849,57 @@
           <p>Every case is discussed within our specialist team before your plan is finalized.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- OUTCOMES BY PROGRAM -->
+  <!-- Illustrative (icon-based), not photographic or numeric claims — every plan is individualized,
+       and specific results are not represented as typical or guaranteed. -->
+  <section class="outcomes">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">What Changes</span>
+        <h2 class="section-title">Focused on what actually shifts, by condition</h2>
+        <p class="section-lede">Every plan targets the specific thing that's been working against you &mdash; not just calories in, calories out.</p>
+      </div>
+      <div class="outcomes-grid">
+        <div class="outcome-card reveal">
+          <div class="outcome-icon" style="background:rgba(91,154,84,0.12)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5B9A54" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <h3>Weight &amp; Fat Loss</h3>
+          <p>Steadier energy and fewer cravings first, with weight change that's built to hold &mdash; not a crash diet that rebounds.</p>
+        </div>
+        <div class="outcome-card reveal">
+          <div class="outcome-icon" style="background:rgba(212,101,127,0.12)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#D4657F" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+          </div>
+          <h3>PCOS / PCOD</h3>
+          <p>Nutrition aimed at insulin resistance and hormonal balance &mdash; the root drivers behind cycle irregularity and stubborn weight.</p>
+        </div>
+        <div class="outcome-card reveal">
+          <div class="outcome-icon" style="background:rgba(236,154,60,0.12)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#EC9A3C" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+          </div>
+          <h3>Diabetes Care</h3>
+          <p>Meals structured around your own blood sugar patterns, built alongside your doctor &mdash; not a generic low-carb sheet.</p>
+        </div>
+        <div class="outcome-card reveal">
+          <div class="outcome-icon" style="background:rgba(243,184,164,0.25)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="2"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"/></svg>
+          </div>
+          <h3>Pregnancy &amp; Prenatal</h3>
+          <p>Nutrition that adapts trimester to trimester &mdash; nausea, cravings and energy all factored in, not overridden.</p>
+        </div>
+        <div class="outcome-card reveal">
+          <div class="outcome-icon" style="background:rgba(20,99,86,0.1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#146356" stroke-width="2"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Hormonal Balance</h3>
+          <p>Energy, mood and sleep addressed at the hormonal root, alongside whatever brought you here in the first place.</p>
+        </div>
+      </div>
+      <p class="outcomes-note">Every plan is individualized &mdash; timelines and outcomes vary from person to person.</p>
     </div>
   </section>
 

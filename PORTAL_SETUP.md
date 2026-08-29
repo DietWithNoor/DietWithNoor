@@ -53,6 +53,24 @@ In **Vercel** (project `diet-with-noor`): Settings > Environment Variables, add 
 Production (and Preview/Development if desired). The `NEXT_PUBLIC_*` ones must also be set for local
 `npm run dev`.
 
+## 4b. Email confirmation link (must work from any browser/device)
+
+Supabase's default "Confirm signup" email template links to `{{ .ConfirmationURL }}`, which uses PKCE
+(`?code=...`). PKCE requires a verifier cookie set by the *same browser* that started signup — opening
+the link in a different browser, or an email app's in-app browser (Gmail, Outlook), fails with
+"PKCE code verifier not found in storage".
+
+Fix: in **Authentication > Email Templates > Confirm signup**, replace the confirmation link with the
+OTP-style token, which has no such requirement:
+
+```
+{{ .SiteURL }}/app/auth/callback?token_hash={{ .TokenHash }}&type=signup
+```
+
+`app/app/auth/callback/route.ts` already handles `token_hash` (preferred) and falls back to the old
+`code` param for any link already in flight under the previous template. No further code changes are
+needed once the template is updated — `resendConfirmation()` reuses the same template automatically.
+
 ## 5. Deploy
 
 This repo already has `.vercel/project.json` linked to the `diet-with-noor` Vercel project.
