@@ -403,7 +403,7 @@
      unpins and the next section continues with its own normal background. */
   .video-bg-wrap{ position:relative; background:#0E4438; }
   .video-bg-sticky{ position:sticky; top:0; height:100vh; width:100%; overflow:hidden; z-index:0; }
-  .video-bg-sticky video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .video-bg-sticky canvas{ position:absolute; inset:0; width:100%; height:100%; display:block; }
   .video-bg-scrim{
     position:absolute; inset:0;
     background:linear-gradient(180deg, rgba(14,68,56,.55) 0%, rgba(14,68,56,.4) 40%, rgba(14,68,56,.7) 100%);
@@ -637,8 +637,8 @@
        video unpins and the next section (Empathy) continues with its own normal background. -->
   <section class="video-bg-wrap" id="videoBgWrap">
     <div class="video-bg-sticky">
-      <div class="video-bg-loading" id="videoBgLoading">Loading&hellip;</div>
-      <video id="scrollVideo" src="assets/scroll-video-seek.mp4" muted playsinline preload="auto"></video>
+      <div class="video-bg-loading" id="videoBgLoading">Loading&hellip; <span id="videoBgPct">0%</span></div>
+      <canvas id="scrollCanvas"></canvas>
       <div class="video-bg-scrim" aria-hidden="true"></div>
     </div>
 
@@ -1191,49 +1191,82 @@
     document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
   }
 
-  // Scroll-scrubbed video background: a real <video>, re-encoded with a keyframe on every
-  // frame (see assets/scroll-video-seek.mp4) so seeking on every scroll tick is instant
-  // instead of decoding forward from a distant keyframe. The wrapper's own natural height
-  // (100vh sticky + however tall the Team section content is) defines the scroll range the
-  // video's duration is mapped across. Independent of GSAP.
+  // Scroll-scrubbed video background: a pre-extracted frame sequence drawn to canvas,
+  // not a <video> element. Mobile browsers (iOS Safari especially) don't reliably support
+  // seeking video.currentTime repeatedly during scroll — this is why real scroll-driven
+  // "video" effects (Apple's product pages included) use image sequences instead. Frame
+  // loading/decoding behaves predictably on every device. The wrapper's own natural height
+  // (100vh sticky + however tall the merged Team/Empathy/About content is) defines the
+  // scroll range the sequence is mapped across. Independent of GSAP.
   (function(){
     var wrap = document.getElementById('videoBgWrap');
     if(!wrap) return;
-    var video = document.getElementById('scrollVideo');
+    var canvas = document.getElementById('scrollCanvas');
+    var ctx = canvas.getContext('2d');
     var loading = document.getElementById('videoBgLoading');
+    var loadPct = document.getElementById('videoBgPct');
+
+    var FRAME_COUNT = 222;
+    var FRAME_PATH = function(i){ return 'assets/scroll-frames/frame_' + String(i).padStart(4, '0') + '.jpg'; };
+
+    var images = new Array(FRAME_COUNT);
+    var loadedCount = 0;
+    var currentFrame = -1;
+
+    function resizeCanvas(){
+      canvas.width = window.innerWidth * (window.devicePixelRatio || 1);
+      canvas.height = window.innerHeight * (window.devicePixelRatio || 1);
+    }
+    window.addEventListener('resize', function(){ resizeCanvas(); drawFrame(currentFrame, true); });
+    resizeCanvas();
+
+    function drawFrame(index, force){
+      if(index === currentFrame && !force) return;
+      var img = images[index];
+      if(!img || !img.complete || !img.naturalWidth) return;
+      currentFrame = index;
+      var cw = canvas.width, ch = canvas.height;
+      var iw = img.naturalWidth, ih = img.naturalHeight;
+      var scale = Math.max(cw / iw, ch / ih);
+      var dw = iw * scale, dh = ih * scale;
+      var dx = (cw - dw) / 2, dy = (ch - dh) / 2;
+      ctx.clearRect(0, 0, cw, ch);
+      ctx.drawImage(img, dx, dy, dw, dh);
+    }
 
     function onScroll(){
-      if(!video.duration) return;
       var rect = wrap.getBoundingClientRect();
       var total = rect.height - window.innerHeight;
       var progress = Math.min(1, Math.max(0, -rect.top / total));
-      video.currentTime = progress * video.duration;
-    }
-
-    // Priming: a <video> that has never played often paints nothing at all —
-    // not even the frame at currentTime 0 — until play() has actually run once.
-    // Muted autoplay is allowed by every browser, so play() then immediately
-    // pause() forces the first real decode without the video visibly running.
-    function primeAndReveal(){
-      var playPromise = video.play();
-      if(playPromise && playPromise.then){
-        playPromise.then(function(){ video.pause(); loading.classList.add('hidden'); onScroll(); })
-          .catch(function(){ loading.classList.add('hidden'); onScroll(); });
-      } else {
-        video.pause();
-        loading.classList.add('hidden');
-        onScroll();
-      }
+      drawFrame(Math.round(progress * (FRAME_COUNT - 1)));
     }
 
     if(reduceMotion){
-      // Show the first frame only, no scroll-linked seeking.
-      video.addEventListener('loadeddata', primeAndReveal, { once: true });
+      // Show a single static frame, no scroll-linked motion.
+      var stillImg = new Image();
+      stillImg.onload = function(){ images[0] = stillImg; drawFrame(0, true); loading.classList.add('hidden'); };
+      stillImg.src = FRAME_PATH(1);
       return;
     }
 
-    video.addEventListener('loadedmetadata', primeAndReveal, { once: true });
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    for(var i = 0; i < FRAME_COUNT; i++){
+      (function(idx){
+        var img = new Image();
+        img.onload = img.onerror = function(){
+          loadedCount++;
+          loadPct.textContent = Math.round((loadedCount / FRAME_COUNT) * 100) + '%';
+          if(idx === 0) drawFrame(0, true);
+          if(loadedCount === FRAME_COUNT){
+            loading.classList.add('hidden');
+            onScroll();
+          }
+        };
+        img.src = FRAME_PATH(idx + 1);
+        images[idx] = img;
+      })(i);
+    }
   })();
 
   // Bonus motion (parallax / tilt / process line / image zoom): pure decoration on top of the
