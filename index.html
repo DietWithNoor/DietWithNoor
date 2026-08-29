@@ -336,7 +336,7 @@
   }
   .service-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow-md); border-color:var(--color-primary-light); }
   .service-card:hover .service-card-image img{ transform:scale(1.08); }
-  .service-card-image{ position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; }
+  .service-card-image{ position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; background:var(--color-muted); }
   .service-card-image img{ width:100%; height:100%; object-fit:cover; transition:transform 500ms ease; }
   .service-card-image::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(20,38,32,0.35)); }
   .service-card > *:not(.service-card-image){ padding-inline:1.75rem; }
@@ -376,28 +376,6 @@
   .diff-card h3{ font-size:1.05rem; margin-bottom:.5rem; }
   .diff-card p{ font-size:.88rem; color:rgba(255,255,255,0.72); }
 
-  /* ---------- Outcomes by program ---------- */
-  .outcomes{ background:var(--color-background); }
-  .outcomes-grid{ display:grid; gap:1.5rem; margin-top:2.5rem; grid-template-columns:1fr; }
-  @media (min-width:640px){ .outcomes-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (min-width:1200px){ .outcomes-grid{ grid-template-columns:repeat(5,1fr); } }
-  .outcome-card{
-    background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-md);
-    padding:1.5rem 1.75rem 1.75rem; box-shadow:var(--shadow-sm); text-align:center; overflow:hidden;
-  }
-  .outcome-image{
-    width:100%; aspect-ratio:4/3; border-radius:var(--radius-sm); overflow:hidden;
-    margin:0 auto 1.1rem; background:var(--color-muted, #f5f5f5);
-  }
-  .outcome-image img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .outcome-icon{
-    width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-    margin:0 auto 1.1rem;
-  }
-  .outcome-icon svg{ width:26px; height:26px; }
-  .outcome-card h3{ font-size:1rem; color:var(--color-primary-dark); margin-bottom:.5rem; }
-  .outcome-card p{ font-size:.85rem; color:var(--color-muted-foreground); line-height:1.5; }
-  .outcomes-note{ text-align:center; font-size:.82rem; color:var(--color-muted-foreground); margin-top:2rem; }
 
   /* ---------- Scroll-scrubbed video background ---------- */
   /* Video is a pinned, edge-to-edge background layer. Real content (the Team
@@ -785,51 +763,51 @@
       <div class="reveal">
         <span class="eyebrow">Programs</span>
         <h2 class="section-title">A plan for every stage of your health journey</h2>
-        <p class="section-lede">Every program starts with a full assessment of your history, labs and lifestyle &mdash; then a plan built specifically for you.</p>
+        <p class="section-lede">Every program starts with a full assessment of your history, labs and lifestyle &mdash; then targets the specific thing that&rsquo;s been working against you, not just calories in, calories out.</p>
       </div>
 
       <div class="service-grid">
         <div class="service-card reveal">
-          <div class="service-card-image"><img src="assets/photos/healthy-flatlay.jpg" alt="Colorful vegetable and grain bowl" loading="lazy"></div>
+          <div class="service-card-image"><img src="assets/outcomes/weight-loss.png" alt="Illustration representing a weight and fat loss journey" loading="lazy"></div>
           <div class="service-icon" style="background:var(--color-fresh-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
           <h3>Weight Loss &amp; Fat Loss</h3>
-          <p>Sustainable fat loss through personalized macros &mdash; no crash diets, no starving, no rebound weight gain.</p>
+          <p>Steadier energy and fewer cravings first, then sustainable fat loss through personalized macros &mdash; no crash diets, no rebound weight gain.</p>
           <div class="tags"><span class="tag">Metabolism</span><span class="tag">Fat Loss</span></div>
           <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Weight Loss program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="service-card reveal">
-          <div class="service-card-image"><img src="assets/photos/fresh-berries.jpg" alt="Fiber-rich bean and vegetable salad" loading="lazy"></div>
+          <div class="service-card-image"><img src="assets/outcomes/pcos.png" alt="Illustration representing PCOS/PCOD symptoms" loading="lazy"></div>
           <div class="service-icon" style="background:var(--color-berry-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
           <h3>PCOS / PCOD Management</h3>
-          <p>Insulin-friendly nutrition to regulate cycles, curb cravings and support hormonal balance from the root.</p>
+          <p>Insulin-friendly nutrition that targets the root hormonal drivers behind irregular cycles, cravings and stubborn weight.</p>
           <div class="tags"><span class="tag">Hormones</span><span class="tag">Insulin Resistance</span></div>
           <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the PCOS Management program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="service-card reveal">
-          <div class="service-card-image"><img src="assets/photos/salad-closeup-card.jpg" alt="Protein-rich salad bowl" loading="lazy"></div>
+          <div class="service-card-image"><img src="assets/outcomes/pregnancy.png" alt="Illustration representing the pregnancy and prenatal journey" loading="lazy"></div>
           <div class="service-icon" style="background:var(--color-mango-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C9 6 6 9.5 6 13a6 6 0 0 0 12 0c0-3.5-3-7-6-11z"/></svg></div>
           <h3>Pregnancy &amp; Prenatal Nutrition</h3>
-          <p>Trimester-specific plans that support your baby&rsquo;s growth while managing weight, energy and nausea.</p>
+          <p>Trimester-specific plans that adapt to nausea, cravings and energy shifts &mdash; supporting your baby&rsquo;s growth without overriding how you actually feel.</p>
           <div class="tags"><span class="tag">Prenatal</span><span class="tag">Trimester Plans</span></div>
           <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Pregnancy Nutrition program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="service-card reveal">
-          <div class="service-card-image"><img src="assets/photos/smoothie-bowl.jpg" alt="Antioxidant-rich mixed fruit plate" loading="lazy"></div>
+          <div class="service-card-image"><img src="assets/outcomes/hormonal-balance.png" alt="Illustration representing hormonal balance" loading="lazy"></div>
           <div class="service-icon" style="background:var(--color-accent-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l-1 7h2l-9 11 2-9H8l1-9z"/></svg></div>
           <h3>Hormonal Balance</h3>
-          <p>Address thyroid, cortisol and estrogen-related imbalances through targeted, food-first strategies.</p>
+          <p>Food-first strategies for thyroid, cortisol and estrogen imbalances &mdash; addressing energy, mood and sleep at the hormonal root.</p>
           <div class="tags"><span class="tag">Thyroid</span><span class="tag">Cortisol</span></div>
           <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Hormonal Balance program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
 
         <div class="service-card reveal">
-          <div class="service-card-image"><img src="assets/photos/produce-market.jpg" alt="Portion-controlled rice and protein plate" loading="lazy"></div>
+          <div class="service-card-image"><img src="assets/outcomes/diabetes.png" alt="Illustration representing diabetes care and monitoring" loading="lazy"></div>
           <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6M12 16v6M4 12h4M16 12h4"/><circle cx="12" cy="12" r="3"/></svg></div>
           <h3>Diabetes Management</h3>
-          <p>Blood-sugar-conscious meal plans that keep glucose stable without giving up the foods you love.</p>
+          <p>Meals structured around your own blood sugar patterns, built alongside your doctor, so glucose stays stable without giving up the foods you love.</p>
           <div class="tags"><span class="tag">Blood Sugar</span><span class="tag">Type 2</span></div>
           <a href="https://wa.me/923306471983" data-wa-msg="Hi Noor, I'm interested in the Diabetes Management program. Can we talk?" class="wa-link wa-cta" target="_blank" rel="noopener">Ask on WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
@@ -928,46 +906,6 @@
     </div>
   </section>
 
-  <!-- OUTCOMES BY PROGRAM -->
-  <!-- Illustrative (icon-based), not photographic or numeric claims — every plan is individualized,
-       and specific results are not represented as typical or guaranteed. -->
-  <section class="outcomes">
-    <div class="container">
-      <div class="reveal">
-        <span class="eyebrow">What Changes</span>
-        <h2 class="section-title">Focused on what actually shifts, by condition</h2>
-        <p class="section-lede">Every plan targets the specific thing that's been working against you &mdash; not just calories in, calories out.</p>
-      </div>
-      <div class="outcomes-grid">
-        <div class="outcome-card reveal">
-          <div class="outcome-image"><img src="assets/outcomes/weight-loss.png" alt="Illustration representing a weight and fat loss journey" loading="lazy" width="400" height="300" /></div>
-          <h3>Weight &amp; Fat Loss</h3>
-          <p>Steadier energy and fewer cravings first, with weight change that's built to hold &mdash; not a crash diet that rebounds.</p>
-        </div>
-        <div class="outcome-card reveal">
-          <div class="outcome-image"><img src="assets/outcomes/pcos.png" alt="Illustration representing PCOS/PCOD symptoms" loading="lazy" width="400" height="300" /></div>
-          <h3>PCOS / PCOD</h3>
-          <p>Nutrition aimed at insulin resistance and hormonal balance &mdash; the root drivers behind cycle irregularity and stubborn weight.</p>
-        </div>
-        <div class="outcome-card reveal">
-          <div class="outcome-image"><img src="assets/outcomes/diabetes.png" alt="Illustration representing diabetes care and monitoring" loading="lazy" width="400" height="300" /></div>
-          <h3>Diabetes Care</h3>
-          <p>Meals structured around your own blood sugar patterns, built alongside your doctor &mdash; not a generic low-carb sheet.</p>
-        </div>
-        <div class="outcome-card reveal">
-          <div class="outcome-image"><img src="assets/outcomes/pregnancy.png" alt="Illustration representing the pregnancy and prenatal journey" loading="lazy" width="400" height="300" /></div>
-          <h3>Pregnancy &amp; Prenatal</h3>
-          <p>Nutrition that adapts trimester to trimester &mdash; nausea, cravings and energy all factored in, not overridden.</p>
-        </div>
-        <div class="outcome-card reveal">
-          <div class="outcome-image"><img src="assets/outcomes/hormonal-balance.png" alt="Illustration representing hormonal balance" loading="lazy" width="400" height="300" /></div>
-          <h3>Hormonal Balance</h3>
-          <p>Energy, mood and sleep addressed at the hormonal root, alongside whatever brought you here in the first place.</p>
-        </div>
-      </div>
-      <p class="outcomes-note">Every plan is individualized &mdash; timelines and outcomes vary from person to person.</p>
-    </div>
-  </section>
 
   <!-- WORLDWIDE -->
   <!-- Comprehensive list of sovereign states (ISO 3166-1), excluding Israel per client request. -->
